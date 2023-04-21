@@ -1,0 +1,760 @@
+---
+title: "CH in Survivors of Childhood Cancer"
+author: "Irenaeus Chan"
+date: "`r format(Sys.time(), '%a %b %d, %Y %X')`"
+output:
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    theme: cosmo
+    df_print: kable
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+```{r setup, include=TRUE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(dev = "svg")
+
+library(dplyr)
+library(table1)
+library(ggpubr)
+library(ggthemr)
+library(logistf)
+library(ggsci)
+library(patchwork)
+library(sjPlot)
+library(purrr)
+
+panel_theme_basic = theme_bw() + theme(
+  panel.border = element_blank(),
+  legend.title = element_blank(),
+  legend.key.size = unit(5, 'mm'),
+  legend.position = 'top',
+  legend.direction = 'horizontal',
+  legend.text = element_text(size = 12),
+  plot.subtitle = element_text(hjust = 0.5, size = 8),
+  plot.title = element_text(face = 'bold', hjust = 0, vjust = -2, size = 18),
+  panel.grid.major = element_blank(),
+  strip.background = element_blank(),
+  strip.text = element_text(size = 12),
+  axis.text.y = element_text(size = 12),
+  axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+  axis.title = element_text(size = 14),
+  axis.line = element_line(colour = "black"),
+  plot.margin = unit(c(0,0,0,0), 'pt')
+)
+
+panel_theme_donut = theme(
+  legend.direction = 'vertical',
+  legend.position="top", 
+  legend.text = element_text(size=12),
+  plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
+  axis.text = element_text(size = 14)
+)
+
+substitution_types = c(
+  "G>T" = "C>A", "G>C" = "C>G", "G>A" = "C>T",
+  "A>T" = "T>A", "A>G" = "T>C", "A>C" = "T>G",
+  "C>A" = "C>A", "C>G" = "C>G", "C>T" = "C>T",
+  "T>A" = "T>A", "T>C" = "T>C", "T>G" = "T>G")
+
+signif.num <- function(x, ns = FALSE) {
+  if (ns) {
+    symbols = c("***", "**", "*", "ns")
+  } else {
+    symbols = c("***", "**", "*", "")
+  }
+  
+  symnum(unlist(x), corr = FALSE, na = FALSE, legend = T,
+         cutpoints = c(0, 0.001, 0.01, 0.05, 1), 
+         symbols = symbols)
+}
+```
+
+```{r inputs}
+D <- read.csv("D_long.csv", header = T, comment = "")
+M <- read.csv("D_wide.csv", header = T, comment = "")
+
+D <- D %>% 
+  mutate(
+    VAF_BIN = case_when(
+      average_AF > 0.10 ~ ">10%",
+      average_AF <= 0.10 & average_AF > 0.02 ~ "2-10%",
+      average_AF <= 0.02 & average_AF >= 0.001 ~ "0.1-2%",
+      TRUE ~ "0%"
+    ),
+    Gene_Class = case_when(
+      Gene == "DNMT3A" | Gene == "TET2" | Gene == "ASXL1" ~ "DTA",
+      Gene == "PPM1D" | Gene == "TP53" | Gene == "CHEK2" ~ "DDR",
+      Gene == "SRSF2" | Gene == "SF3B1" ~ "Splice",
+      Gene == "JAK2" ~ "JAK2",
+      Gene == "No Mutation" ~ "No Mutation"
+    ),
+    DTA = if_else(Gene_Class == "DDR", 1, 0),
+    DDR = if_else(Gene_Class == "DTA", 1, 0),
+    Origin = case_when(
+      Cohort == "Normal Control" ~ "Solid Tumor Control",
+      Cohort == "WashU Control" ~ "Healthy Control",
+      Cohort == "Case" ~ "Case"
+    ),
+    Cohort = case_when(
+      Cohort == "Astronaut" ~ "Control",
+      Cohort == "Case" ~ "Case",
+      Cohort == "Normal Control" ~ "Control",
+      Cohort == "WashU Control" ~ "Control"
+    )
+  )
+
+M <- M %>%
+  mutate(
+    CH_Binary = if_else(CH.Positive == "Yes", 1, 0),
+    Origin = case_when(
+      Cohort == "Normal Control" ~ "Solid Tumor Control",
+      Cohort == "WashU Control" ~ "Healthy Control",
+      Cohort == "Case" ~ "Case"
+    ),
+    Cohort = case_when(
+      Cohort == "Astronaut" ~ "Control",
+      Cohort == "Case" ~ "Case",
+      Cohort == "Normal Control" ~ "Control",
+      Cohort == "WashU Control" ~ "Control"
+    )
+  )
+```
+
+```{r Statistical Models, message = FALSE, warning = FALSE}
+fig1b_model <- M %>%
+  mutate(
+    Cohort = relevel(
+      factor(Cohort),
+      ref = "Control"
+    )
+  ) %>%
+  glm(
+    formula = CH_Binary ~ Cohort + Age + Gender + Race,
+    family = "binomial"
+  ) %>%
+  get_model_data(
+    type = "est"
+  )
+
+fig1c_model <- bind_rows(
+  M %>%
+    logistf(
+      formula = DTA_CH ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>% 
+    filter(term == "CohortControl"),
+  M %>% logistf(
+    formula = DDR_CH ~ Cohort + Age + Gender + Race,
+    family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>% 
+    filter(term == "CohortControl")
+  )
+
+fig1d_model <- bind_rows(
+  M %>%
+    mutate(
+      Cohort = relevel(factor(Cohort), ref = "Control")
+    ) %>%
+    logistf(
+      formula = CH_Binary ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>% 
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      VAF = "All VAFs"
+    ) %>%
+    filter(term == "CohortCase"),
+  M %>%
+    mutate(
+      Cohort = relevel(factor(Cohort), ref = "Control")
+    ) %>%
+    filter(VAF_group == ">2%" | VAF_group == "No CH") %>%
+    logistf(
+      formula = CH_Binary ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      VAF = "Greater than 2% VAF"
+    ) %>%
+    filter(term == "CohortCase"),
+  M %>%
+    mutate(
+      Cohort = relevel(factor(Cohort), ref = "Control")
+    ) %>%
+    filter(VAF_group == "<=2%" | VAF_group == "No CH") %>%
+    logistf(
+      formula = CH_Binary ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      VAF = "Less than or equal 2% VAF"
+    ) %>%
+    filter(term == "CohortCase")
+)
+
+genes <- D %>%
+  mutate(
+    Gene = as.factor(Gene)
+  ) %>%
+  pull(Gene) %>%
+  unique()
+suppfig1_model <- bind_rows(
+  map(genes, function(gene) {
+    Samples <- D %>%
+      filter(Gene == gene) %>%
+      pull(SampleID)
+    M %>%
+      mutate(
+        CH_Gene = if_else(
+          SampleID %in% Samples,
+          1,
+          0
+        )
+      ) %>%
+      logistf(
+        formula = CH_Gene ~ Cohort + Age + Gender + Race,
+        family = "binomial"
+      ) %>%
+      get_model_data(
+        type = "est"
+      ) %>%
+      mutate(
+        Gene = gene
+      ) %>%
+      filter(
+        term == "CohortControl"
+      )
+  })
+)
+
+suppfig4_model <- bind_rows(
+  M %>%
+    mutate(
+      Origin = relevel(factor(Origin), ref = "Healthy Control")
+    ) %>%
+    filter(
+      Origin != "Solid Tumor Control"
+    ) %>%
+    glm(
+      formula = CH_Binary ~ Origin + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ),
+  M %>%
+    mutate(
+      Origin = relevel(factor(Origin), ref = "Healthy Control")
+    ) %>%
+    filter(
+      Origin != "Healthy Control"
+    ) %>%
+    glm(
+      formula = CH_Binary ~ Origin + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ),
+  M %>%
+    mutate(
+      Origin = relevel(factor(Origin), ref = "Healthy Control")
+    ) %>%
+    filter(
+      Origin != "Case"
+    ) %>%
+    glm(
+      formula = CH_Binary ~ Origin + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    )
+)
+
+```
+# Table 1
+```{r Table1}
+table1(~ Age + Gender + Race + CH.Positive | Cohort, data = M)
+```
+
+# Figure 1
+
+```{r Fig1a - Frequency of CH Across All Ages}
+fig1a <- M %>%
+  ggplot(
+    aes(x = Age,
+        y = CH_Binary,
+        color = Cohort
+    )
+  ) +
+  geom_smooth(
+    aes(fill = Cohort,
+        color = Cohort
+    ),
+    method = "gam",
+    formula = y ~ s(x),
+    method.args = list(family = "binomial"),
+    size = 1.5,
+    se = TRUE,
+    alpha = 0.1
+  ) +
+  scale_y_continuous(
+    labels = scales::label_percent(accuracy = 1L),
+    expand = expansion(add = c(0.01, 0.01))
+  ) +
+  scale_x_continuous(
+    breaks = seq(0, 50, by = 5)
+  ) + 
+  labs(x = "Age",
+       y = "Frequency (%)"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+fig1a
+```
+
+```{r Fig1b - Proportion of CH in Case vs Controls}
+fig1b <- D %>%
+  distinct(Cohort, SampleID) %>%
+  group_by(Cohort) %>%
+  summarise(Total = n()) %>%
+  left_join(
+    D %>%
+      filter(ch_pd_kb == 1) %>%
+      distinct(Cohort, SampleID) %>%
+      group_by(Cohort) %>%
+      summarise(Total_CH = n()),
+    by = "Cohort"
+  ) %>%
+  mutate(Proportion = Total_CH/Total) %>%
+  ggplot(
+    aes(x = Cohort,
+        y = Proportion,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.45,
+    xmin = 1,
+    xmax = 2,
+    annotation = paste0("p = ", format(fig1b_model$p.value[1], digits = 1)),
+    tip_length = 0.03,
+    size = 0.3
+  ) +
+  geom_text(
+    aes(label = Total_CH),
+    vjust = -1
+  ) +
+  labs(x = "Groups",
+       y = "Proportion of CH Positive Samples"
+  ) +
+  ylim(0, 0.5) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+fig1b
+```
+
+```{r Fig1c - Proportion of CH in Cases vs Groups Grouped by Gene Class}
+fig1c <- D %>%
+  filter(Gene != "No Mutation") %>%
+  distinct(Gene_Class, SampleID, Gene, Cohort) %>%
+  group_by(Gene_Class, Cohort) %>%
+  summarise(Samples = sum(n())) %>%
+  left_join(
+    D %>%
+      distinct(Cohort, SampleID) %>%
+      group_by(Cohort) %>%
+      summarise(Total = n()),
+    by = "Cohort"
+  ) %>%
+  mutate(
+    Proportion = Samples/Total
+  ) %>%
+  filter(
+    Gene_Class != "JAK2"
+  ) %>%
+  ggplot(
+    aes(x = reorder(Gene_Class, -Proportion),
+        y = Proportion,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.35,
+    xmin = 0.75,
+    xmax = 1.25,
+    annotation = paste0("p = ", format(fig1c_model$p.value[1], digits = 1)),
+    tip_length = 0.03,
+    size = 0.3
+  ) + 
+  geom_signif(
+    y_position = 0.32,
+    xmin = 1.75,
+    xmax = 2.25,
+    annotation = paste0("p = ", format(fig1c_model$p.value[2], digits = 1)),
+    tip_length = 0.03,
+    size = 0.3
+  ) + 
+  geom_text(
+    aes(label = Samples,
+        vjust = -1
+    ),
+    position = position_dodge(width = 1)
+  ) +
+  labs(x = "",
+       y = "Proportion of Samples"
+  ) + 
+  ylim(0, 0.4) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+fig1c
+```
+
+```{r Fig1d - Odds Ratio Grouped by VAF Bins}
+fig1d <- fig1d_model %>%
+  mutate(
+    term = factor("Treated Individuals"),
+    p_fdr = p.adjust(p.value, method = "fdr")
+  ) %>%
+  arrange(estimate, VAF) %>%
+  mutate(
+    q.value = p.adjust(p.value, n = nrow(.), method = 'fdr'),
+    q.label = paste0(signif(estimate, 2), signif.num(q.value)),
+    q.star = signif.num(q.value)
+  ) %>%
+  ggplot(
+    aes(x = VAF,
+        y = estimate,
+        ymin = conf.low,
+        ymax = conf.high,
+        color = VAF
+    )
+  ) +
+  geom_point(
+    position = position_dodge(width = 0.8),
+    size = 2
+  ) +
+  geom_errorbar(
+    position = position_dodge(width = 0.8),
+    width = 0,
+    size = 1
+  ) +
+  geom_text(
+    aes(label = q.star,
+        vjust = -0.7
+    ),
+    position = position_dodge(width = 0.8),
+    size = 4,
+    alpha = 0.9
+  ) +
+  geom_hline(
+    yintercept = 1,
+    color = "black",
+    linetype = "solid", 
+    alpha = 0.1
+  ) + 
+  coord_flip() +
+  labs(x = "",
+       y = "Odds Ratio for CH"
+  ) +
+  scale_y_log10() +
+  panel_theme_basic +
+  theme(
+    legend.text = element_blank(),
+    legend.position = "none"
+  ) +
+  scale_fill_nejm() + scale_color_nejm()
+fig1d
+```
+
+```{r Figure1}
+Fig1 <- (fig1a + fig1b) / (fig1c + fig1d) + plot_annotation(tag_levels = 'A')
+Fig1
+```
+
+# Supp Figure 1
+```{r Distrubtion by Gene per Sample}
+D %>%
+  distinct(Gene, SampleID, Cohort) %>%
+  group_by(Gene, Cohort) %>%
+  summarise(Samples = sum(n())) %>%
+  left_join(
+    D %>%
+      distinct(Cohort, SampleID) %>%
+      group_by(Cohort) %>%
+      summarise(Total = n()),
+    by = "Cohort"
+  ) %>%
+  mutate(Proportion = Samples/Total) %>%
+  filter(Gene != "No Mutation") %>%
+  ggplot(
+    aes(x = reorder(Gene, -Proportion),
+        y = Proportion,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.17,
+    xmin = 2.8,
+    xmax = 3.2,
+    annotation = paste0("p = ", 
+                        format(suppfig1_model$p.value[1], digits = 1), 
+                        suppfig1_model$p.stars[1]
+                 ),
+    tip_length = 0.03,
+    size = 0.03
+  ) +
+  geom_signif(
+    y_position = 0.15,
+    xmin = 1.8,
+    xmax = 2.2,
+    annotation = paste0("p = ", 
+                        format(suppfig1_model$p.value[2], digits = 1), 
+                        suppfig1_model$p.stars[2]
+                 ),
+    tip_length = 0.03,
+    size = 0.03
+  ) + 
+  geom_signif(
+    y_position = 0.11,
+    xmin = 3.8,
+    xmax = 4.2,
+    annotation = paste0("p = ", 
+                        format(suppfig1_model$p.value[5], digits = 1), 
+                        suppfig1_model$p.stars[5]
+                 ),
+    tip_length = 0.03,
+    size = 0.03,
+  ) +
+  labs(x = "",
+       y = "Proportion of Samples"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```
+
+# Supp Figure 2
+```{r Violin Plots of the VAF Distributions}
+D %>% 
+  filter(
+    ch_pd_kb == 1,
+    Gene_Class != "JAK2"
+  ) %>%
+  ggplot(
+    aes(x = Gene_Class,
+        y = average_AF,
+        fill = Cohort
+    )
+  ) + 
+  geom_boxplot(
+    position = position_dodge(0.9)
+  ) +
+  geom_violin(
+    position = position_dodge(0.9),
+    alpha = 0.5
+  ) +
+  scale_y_continuous(
+    trans = "log",
+    labels = scales::number_format(accurcy = 0.001)
+  ) +
+  labs(x = "",
+       y = "VAF"
+  ) + 
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```
+
+# Supp Figure 3
+```{r Donut Plot of SNPs}
+D_ <- D %>% 
+  filter(
+    nchar(REF) == 1,
+    nchar(ALT) == 1
+  ) %>%
+  mutate(
+    nuc_change = paste0(REF, ">", ALT),
+    sub_nuc = substitution_types[nuc_change]
+  ) %>%
+  group_by(Cohort) %>%
+  count(sub_nuc)
+
+d1 <- D_ %>%
+  filter(Cohort == "Case") %>%
+  ggdonutchart(
+    x = "n",
+    fill = "sub_nuc",
+    color = "white",
+    lab.pos = "out",
+    lab.font = c(0.1, "plain", "black"),
+    size = 0.5
+  ) +
+  labs(fill = "Nucleotide Change (SNVs)") +
+  ggtitle("Cases") +
+  panel_theme_donut +
+  scale_fill_nejm() + scale_color_nejm() 
+
+d2 <- D_ %>%
+  filter(Cohort == "Control") %>%
+  ggdonutchart(
+    x = "n",
+    fill = "sub_nuc",
+    color = "white",
+    lab.pos = "out",
+    lab.font = c(0.1, "plain", "black"),
+    size = 0.5
+  ) +
+  labs(fill = "Nucleotide Change (SNVs)") +
+  ggtitle("Control") +
+  panel_theme_donut +
+  scale_fill_nejm() + scale_color_nejm() 
+
+SuppFig3 <- d1 + d2
+SuppFig3
+```
+
+# Supp Figure 4
+```{r Overall Frequency of CH }
+D %>%
+  filter(ch_pd_kb == 1) %>%
+  group_by(Origin) %>%
+  summarise(Frequency = n_distinct(SampleID)) %>%
+  left_join(
+    M %>%
+      group_by(Origin) %>%
+      summarise(Total = n()),
+    by = "Origin"
+  ) %>%
+  mutate(
+    Proportion = Frequency/Total
+  ) %>%
+  ggplot(
+    aes(x = Origin,
+        y = Proportion,
+        fill = Origin
+    )
+  ) + 
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.42,
+    xmin = 1,
+    xmax = 2, 
+    annotation = paste0("p = ", 
+                        format(suppfig4_model$p.value[1], digits = 1),
+                        suppfig4_model$p.stars[1]
+                        ),
+    tip_length = 0.03,
+    size = 0.3
+  ) +
+  geom_signif(
+    y_position = 0.45,
+    xmin = 1,
+    xmax = 3, 
+    annotation = paste0("p = ", 
+                        format(suppfig4_model$p.value[2], digits = 1),
+                        suppfig4_model$p.stars[2]
+                        ),
+    tip_length = 0.03,
+    size = 0.3
+  ) +
+  geom_signif(
+    y_position = 0.32,
+    xmin = 2,
+    xmax = 3, 
+    annotation = paste0("p = ", 
+                        format(suppfig4_model$p.value[3], digits = 1),
+                        suppfig4_model$p.stars[3]
+                        ),
+    tip_length = 0.03,
+    size = 0.3
+  ) +
+  geom_text(
+    aes(label = Frequency,
+        vjust = -1
+    )
+  ) +
+  ylim(0, 0.5) +
+  labs(x = "",
+       y = "Proportion of CH Positive Samples"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm() 
+```
+
+# Supp Figure 5
+```{r Number of Mutations Per Sample}
+M %>%
+  left_join(
+    D %>%
+      filter(ch_pd_kb == 1) %>%
+      group_by(SampleID, Cohort) %>%
+      summarise(MutationsPerSample = n()),
+    by = c("SampleID", "Cohort")
+  ) %>%
+  mutate(
+    TotalMutations = case_when(
+      is.na(MutationsPerSample) ~ "0",
+      MutationsPerSample == 1 ~ "1",
+      MutationsPerSample == 2 ~ "2",
+      MutationsPerSample == 3 ~ "3",
+      MutationsPerSample == 4 ~ "4",
+      MutationsPerSample == 5 ~ "5",
+      MutationsPerSample == 6 ~ "6",
+      MutationsPerSample == 7 ~ "7",
+      MutationsPerSample == 8 ~ "9",
+      TRUE ~ "9+"
+    )
+  ) %>% 
+  group_by(TotalMutations, Cohort) %>%
+  summarise(Frequency = n()) %>%
+  filter(TotalMutations != "0") %>%
+  ggplot(
+    aes(x = TotalMutations,
+        y = Frequency,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  labs(x = "Number of Samples",
+       y = "Total # of Mutations"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```

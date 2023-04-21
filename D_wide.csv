@@ -1,0 +1,241 @@
+SampleID,Cohort,Race,Ethnicity,Age,Diagnosis,Gender,DateOffTx,SMN,DateOfCollection,Chemo,EBRT,RadioactiveIodine,AutoSCT,DoxoOrDauno,Cisplatin,Carboplatin,Etoposide,AlkylatingAgents,Immunotherapy,KnownCancerPredisposition,CH Positive,DDR,DTA,DDR_CH,DTA_CH,VAF_group
+LBC_054,Case,White,Non-Spanish; Non-Hispanic,20,EWING'S SARCOMA,M,5/1/17,0,6/8/20,1,1,0,0,1,0,0,1,1,0,0,Yes,4,1,1,1,<=2%
+LBC_008,Case,White,Non-Spanish; Non-Hispanic,15,EWING'S SARCOMA,F,2/1/17,0,8/19/20,1,0,0,0,1,0,0,1,1,0,0,Yes,1,0,1,0,<=2%
+LBC_044,Case,Asian,Non-Spanish; Non-Hispanic,19,EWING'S SARCOMA,F,9/1/16,0,8/5/20,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_003,Case,White,Non-Spanish; Non-Hispanic,15,Adrenocortical carcinoma,M,6/1/19,0,5/22/20,1,0,0,0,1,1,0,1,0,1,0,No,0,0,0,0,No CH
+LBC_064,Case,White,Non-Spanish; Non-Hispanic,20,Ewing Sarcoma,F,2/1/18,0,1/28/20,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_057,Case,White,Non-Spanish; Non-Hispanic,20,EWING'S SARCOMA,F,11/1/16,0,6/8/20,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_060,Case,African American,Non-Spanish; Non-Hispanic,18,Osteosarcoma,F,2/1/16,0,1/30/19,1,0,0,0,1,1,0,0,0,0,0,Yes,1,0,1,0,<=2%
+LBC_036,Case,African American,"Spanish  NOS; Hispanic NOS, Latino NOS",16,"Pilocytic astrocytoma, KIAA1549-BRAF fusion positive",M,2/1/12,0,4/26/18,1,0,0,0,0,0,1,0,0,0,0,No,0,0,0,0,No CH
+LBC_053,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,1/20/20,1,3/12/20,1,0,0,1,1,1,1,1,1,0,1,No,0,0,0,0,No CH
+LBC_101,Case,Asian,Non-Spanish; Non-Hispanic,27,"PAPILLARY ADENOCARCINOMA, NOS",F,4/1/06,1,7/15/20,0,1,1,0,0,0,0,0,0,0,1,No,0,0,0,0,No CH
+LBC_103,Case,White,Non-Spanish; Non-Hispanic,25,EWING'S SARCOMA,M,6/1/14,0,12/27/17,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_077,Case,White,Non-Spanish; Non-Hispanic,19,EWING'S SARCOMA,M,3/1/16,1,1/11/18,1,1,0,0,1,0,0,1,1,0,0,Yes,1,0,1,0,<=2%
+LBC_078,Case,White,Non-Spanish; Non-Hispanic,21,"OSTEOSARCOMA, NOS",F,1/1/17,0,1/10/20,1,0,0,0,1,1,0,0,0,1,0,No,0,0,0,0,No CH
+LBC_110,Case,African American,Non-Spanish; Non-Hispanic,33,"MEDULLOBLASTOMA, NOS",M,10/1/14,0,7/1/19,0,1,0,0,0,0,0,0,0,0,0,Yes,1,1,1,1,<=2%
+LBC_079,Case,White,Non-Spanish; Non-Hispanic,22,GERMINOMA,F,11/1/15,0,8/13/20,1,0,0,0,0,1,0,1,0,0,0,No,0,0,0,0,No CH
+LBC_068,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",18,"OSTEOSARCOMA, NOS",M,7/1/17,0,5/22/18,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_090,Case,White,Unknown whether Spanish or not,22,Ganglioneuroblastoma (GNBL),M,12/1/97,1,5/29/18,1,1,1,1,1,1,0,1,1,1,0,Yes,0,1,0,1,>2%
+LBC_009,Case,White,Non-Spanish; Non-Hispanic,13,"PAPILLARY ADENOCARCINOMA, NOS",M,12/1/13,0,5/18/18,0,0,1,0,0,0,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_026,Case,White,Non-Spanish; Non-Hispanic,14,Undifferentiated Sarcoma,F,6/1/17,0,4/10/18,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_070,Case,White,Unknown whether Spanish or not,21,EMBRYONAL RHABDOMYOSARCOMA,M,5/1/02,0,10/2/19,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_098,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",25,"NEURILEMMOMA, NOS",M,7/1/08,1,4/26/19,1,1,0,0,1,0,1,1,1,0,1,No,0,0,0,0,No CH
+LBC_055,Case,White,Non-Spanish; Non-Hispanic,19,ATYPICAL TERATOID/RHABDOID TUMOR (C71._),F,3/1/08,0,10/11/19,1,1,0,0,1,1,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_122,Case,White,Non-Spanish; Non-Hispanic,47,EMBRYONAL RHABDOMYOSARCOMA,M,3/1/05,0,8/25/20,1,1,0,0,1,1,0,1,1,0,0,Yes,1,7,1,1,<=2%
+LBC_005,Case,White,Non-Spanish; Non-Hispanic,13,Neuroblastoma,M,10/1/17,1,8/27/18,1,0,0,0,1,0,1,1,1,0,0,No,0,0,0,0,No CH
+LBC_084,Case,White,Non-Spanish; Non-Hispanic,22,EWING'S SARCOMA,F,11/1/07,0,9/6/19,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_071,Case,White,Non-Spanish; Non-Hispanic,21,WILMS TUMOR,M,8/1/01,0,9/9/20,1,1,0,0,1,0,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_024,Case,African American,"Spanish  NOS; Hispanic NOS, Latino NOS",15,High grade histiocytoma / high grade spindle cell sarcoma,F,11/1/16,0,8/9/18,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_106,Case,White,Non-Spanish; Non-Hispanic,31,Osteosarcoma,F,1/1/10,0,10/1/20,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_062,Case,Unkown,Non-Spanish; Non-Hispanic,20,"NEUROBLASTOMA, NOS",F,4/1/02,0,12/17/19,1,1,0,1,1,1,1,1,1,1,0,No,0,0,0,0,No CH
+LBC_022,Case,White,Unknown whether Spanish or not,16,"OSTEOSARCOMA, NOS",M,3/1/09,0,10/23/19,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_015,Case,White,Non-Spanish; Non-Hispanic,13,"HODGKIN'S, NODULAR SCLEROSIS, NOS",M,3/1/18,0,1/12/18,1,1,0,1,1,0,0,1,1,1,0,No,0,0,0,0,No CH
+LBC_102,Case,White,Non-Spanish; Non-Hispanic,28,EMBRYONAL RHABDOMYOSARCOMA,F,6/1/98,0,8/26/20,1,1,0,0,1,0,0,0,1,0,0,Yes,0,0,0,0,>2%
+LBC_114,Case,White,Non-Spanish; Non-Hispanic,35,HODGKIN LYMPHOMA,M,3/1/00,0,8/25/20,0,1,0,0,1,0,0,0,1,0,0,Yes,1,0,1,0,<=2%
+LBC_065,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,7/1/15,0,9/18/18,1,0,0,0,1,1,0,0,1,0,0,Yes,1,1,1,1,<=2%
+LBC_040,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",18,"OSTEOSARCOMA, NOS",M,9/1/12,0,1/22/20,1,0,0,0,1,1,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_066,Case,White,Non-Spanish; Non-Hispanic,20,"Diffuse astrocytoma, IDH-mutant",M,5/1/16,0,8/8/19,1,1,0,0,0,0,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_092,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",24,GIANT CELL SARCOMA,M,3/1/11,0,9/24/20,0,1,0,0,0,0,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_045,Case,White,Non-Spanish; Non-Hispanic,17,Chondrosarcoma,M,9/1/11,0,8/6/18,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_046,Case,Asian,Non-Spanish; Non-Hispanic,18,"HODGKIN'S DISEASE, NOS",F,2/1/15,0,12/18/19,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_016,Case,White,Unknown whether Spanish or not,16,CLEAR CELL SARCOMA,F,12/1/07,0,8/19/20,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_059,Case,Other,"Spanish  NOS; Hispanic NOS, Latino NOS",20,EMBRYONAL RHABDOMYOSARCOMA,M,8/1/07,0,9/16/20,1,1,0,0,0,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_033,Case,White,Non-Spanish; Non-Hispanic,17,Non-Hodgkin Lymphoma,M,4/1/16,0,2/11/20,1,0,0,0,1,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_082,Case,White,Non-Spanish; Non-Hispanic,22,"NEUROBLASTOMA, NOS",F,9/1/99,0,1/8/20,1,1,1,0,1,1,0,1,1,1,0,Yes,1,2,1,1,<=2%
+LBC_075,Case,White,Non-Spanish; Non-Hispanic,22,NEUROBLASTOMA,F,1/1/03,0,7/1/20,1,1,0,1,1,1,1,1,1,1,0,Yes,0,3,0,1,<=2%
+LBC_025,Case,White,Non-Spanish; Non-Hispanic,16,EMBRYONAL RHABDOMYOSARCOMA,M,10/1/09,0,10/4/19,1,1,0,0,0,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_112,Case,White,Non-Spanish; Non-Hispanic,34,GERMINOMA,M,11/1/07,0,9/17/20,0,1,0,0,0,0,0,0,0,0,0,Yes,0,1,0,1,<=2%
+LBC_048,Case,White,Non-Spanish; Non-Hispanic,19,"GLIOMA, MALIGNANT",M,7/1/06,0,1/7/20,1,0,0,0,0,0,1,0,0,0,0,Yes,0,1,0,1,<=2%
+LBC_097,Case,African American,Non-Spanish; Non-Hispanic,25,HODGKIN LYMPHOMA,M,1/1/13,0,9/16/20,1,1,0,0,1,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_069,Case,White,Non-Spanish; Non-Hispanic,20,"HODGKIN'S DISEASE, MIXED CELLULARITY",M,7/1/13,0,10/16/19,1,0,0,0,1,0,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_123,Case,White,Non-Spanish; Non-Hispanic,49,EWING'S SARCOMA,M,9/1/81,0,9/16/20,1,1,0,0,1,0,0,0,1,0,0,Yes,1,1,1,1,>2%
+LBC_047,Case,White,Non-Spanish; Non-Hispanic,19,NEUROBLASTOMA,F,3/1/11,0,9/8/20,1,1,0,1,1,1,1,1,1,1,0,Yes,3,2,1,1,<=2%
+LBC_115,Case,White,Unknown whether Spanish or not,37,Hodgkin's Lymphoma,M,8/1/03,0,10/1/20,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_063,Case,African American,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,2/1/13,1,4/15/19,1,1,1,1,1,0,1,1,1,0,1,Yes,2,2,1,1,>2%
+LBC_052,Case,White,Non-Spanish; Non-Hispanic,17,Fibroblastic Osteosarcoma,F,8/1/17,0,1/16/18,1,0,0,0,1,1,0,0,0,0,0,Yes,0,2,0,1,<=2%
+LBC_073,Case,White,Non-Spanish; Non-Hispanic,21,EWING'S SARCOMA,F,8/1/12,0,6/17/20,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_093,Case,White,Unknown whether Spanish or not,24,NEUROFIBROSARCOMA,F,9/12/08,0,8/7/19,1,1,0,0,1,0,0,1,1,0,0,Yes,1,0,1,0,<=2%
+LBC_049,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",19,"NEUROBLASTOMA, NOS",F,11/1/07,0,11/27/19,1,1,0,0,1,1,1,1,1,1,0,Yes,0,1,0,1,<=2%
+LBC_027,Case,White,Non-Spanish; Non-Hispanic,16,Atypical Meningioma,M,2/1/20,0,2/8/19,1,1,0,0,1,1,0,1,1,1,0,Yes,0,1,0,1,<=2%
+LBC_011,Case,White,Non-Spanish; Non-Hispanic,15,BURKITT'S LYMPHOMA,M,11/1/08,0,11/20/19,1,0,0,0,0,0,0,0,1,0,0,Yes,0,2,0,1,<=2%
+LBC_081,Case,Asian,Non-Spanish; Non-Hispanic,21,"FOLLICULAR LYMPHOMA, GRADE 3",F,12/1/11,0,1/3/20,1,0,0,0,0,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_007,Case,White,Unknown whether Spanish or not,13,Malignant Triton Tumor,M,6/1/07,0,7/24/18,1,0,0,0,0,0,0,0,1,0,1,No,0,0,0,0,No CH
+LBC_061,Case,White,Non-Spanish; Non-Hispanic,18,Neuroblastoma,M,11/1/07,0,1/23/18,1,1,0,0,1,1,0,1,1,1,0,No,0,0,0,0,No CH
+LBC_083,Case,White,Non-Spanish; Non-Hispanic,22,PLEOMORPHIC LIPOSARCOMA,F,9/1/11,0,11/6/19,1,0,0,0,1,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_043,Case,White,Non-Spanish; Non-Hispanic,16,EMBRYONAL RHABDOMYOSARCOMA,M,8/1/17,0,2/6/18,1,1,0,0,0,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_058,Case,White,Non-Spanish; Non-Hispanic,19,Neuroblastoma,F,3/1/15,0,12/17/19,1,1,0,1,1,1,1,1,1,1,0,Yes,0,2,0,1,<=2%
+LBC_037,Case,White,Non-Spanish; Non-Hispanic,16,Chordoma,M,5/1/17,0,8/9/18,0,1,0,0,0,0,0,0,0,0,0,Yes,0,2,0,1,<=2%
+LBC_031,Case,Asian,Non-Spanish; Non-Hispanic,17,EWING'S SARCOMA,F,2/1/10,0,9/2/20,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_121,Case,White,Other Spanish/Hispanic(incl European; excl Dom Rep,47,MIXED GERM CELL TUMOR,M,11/1/89,0,10/6/20,1,0,0,0,1,1,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_100,Case,White,Unknown whether Spanish or not,26,EWING'S SARCOMA,M,6/1/06,0,10/8/20,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_107,Case,White,Non-Spanish; Non-Hispanic,32,EWING'S SARCOMA,F,12/1/96,0,10/8/20,1,1,0,1,1,0,0,1,1,0,0,Yes,2,0,1,0,<=2%
+LBC_089,Case,White,Non-Spanish; Non-Hispanic,24,LYMPHOMA,M,1/1/15,0,10/20/20,1,0,0,0,1,0,0,1,1,1,0,No,0,0,0,0,No CH
+LBC_095,Case,White,Non-Spanish; Non-Hispanic,25,Neuroblastoma,F,1/1/02,0,10/20/20,1,1,0,1,1,1,0,1,1,1,0,Yes,1,0,1,0,<=2%
+LBC_028,Case,White,Non-Spanish; Non-Hispanic,17,Nephroblastoma,F,10/1/08,0,10/20/20,1,1,0,0,1,0,1,1,1,0,0,No,0,0,0,0,No CH
+LBC_088,Case,White,Non-Spanish; Non-Hispanic,24,SYNOVIAL SARCOMA,F,2/1/12,0,10/22/20,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_072,Case,Asian,Non-Spanish; Non-Hispanic,21,"OSTEOSARCOMA, NOS",F,12/1/08,0,3/3/20,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
+LBC_038,Case,Asian,"Spanish  NOS; Hispanic NOS, Latino NOS",18,HODGKIN LYMPHOMA,M,5/1/17,0,10/27/20,1,1,0,0,1,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_096,Case,White,Non-Spanish; Non-Hispanic,25,MEDULLOBLASTOMA,M,7/1/06,0,10/27/20,1,1,1,0,0,1,0,0,1,0,0,Yes,1,0,1,0,<=2%
+LBC_029,Case,White,Non-Spanish; Non-Hispanic,17,ALVEOLAR RHABDOMYOSARCOMA,F,2/1/14,0,10/27/20,1,1,0,0,1,0,1,1,1,0,0,No,0,0,0,0,No CH
+LBC_120,Case,White,Non-Spanish; Non-Hispanic,42,HODGKIN LYMPHOMA,M,6/1/96,0,10/29/20,1,1,0,1,1,1,0,1,1,0,0,Yes,1,4,1,1,<=2%
+LBC_032,Case,White,Unknown whether Spanish or not,17,ALVEOLAR RHABDOMYOSARCOMA,F,4/1/07,0,11/11/20,1,1,0,0,1,0,1,1,1,0,0,Yes,0,1,0,1,<=2%
+LBC_085,Case,White,Non-Spanish; Non-Hispanic,23,SPINDLE CELL SARCOMA,F,4/1/02,0,11/12/20,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_105,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",29,Â GANGLIONEUROBLASTOMA,F,11/1/94,0,11/23/20,1,1,0,0,1,1,0,1,1,1,0,Yes,1,0,1,0,<=2%
+LBC_099,Case,White,Unknown whether Spanish or not,26,Embryonal rhabdomyosarcoma,F,8/1/03,0,12/8/20,1,1,0,0,1,0,0,1,1,0,0,Yes,0,1,0,1,<=2%
+LBC_039,Case,White,Non-Spanish; Non-Hispanic,18,EMBRYONAL RHABDOMYOSARCOMA,M,5/1/10,0,1/15/20,1,1,0,0,1,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_124,Case,White,Non-Spanish; Non-Hispanic,19,EWING'S SARCOMA,F,3/1/16,0,11/1/18,1,1,0,0,1,0,0,1,1,0,0,Yes,2,0,1,0,<=2%
+LBC_126,Case,White,Unknown whether Spanish or not,21,EMBRYONAL RHABDOMYOSARCOMA,F,7/1/12,1,2/4/21,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_127,Case,White,Unknown whether Spanish or not,22,ALVEOLAR RHABDOMYOSARCOMA,F,9/1/06,0,2/4/21,1,1,0,0,1,0,1,1,1,0,0,Yes,1,1,1,1,<=2%
+LBC_128,Case,White,Non-Spanish; Non-Hispanic,24,EWING'S SARCOMA,M,1/1/17,0,9/20/18,1,1,0,0,1,0,0,1,1,0,0,Yes,5,0,1,0,>2%
+LBC_129,Case,White,Non-Spanish; Non-Hispanic,20,EPITHELIOID SARCOMA,M,8/1/13,0,12/18/18,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_130,Case,White,Non-Spanish; Non-Hispanic,16,EWING SARCOMA,F,7/1/17,0,3/12/19,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_125,Case,White,Non-Spanish; Non-Hispanic,16,Rhabdoid Tumor,F,2/1/19,0,10/29/20,1,1,0,0,1,0,0,1,1,1,0,No,0,0,0,0,No CH
+DF_NC_019_N,Normal Control,White,Hispanic/Latino,18,Osteosarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_058_N,Normal Control,White,Non-Spanish; Non-Hispanic,19,Soft Tissue Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_066_N,Normal Control,Unkown,Unknown,13,Soft Tissue Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_006_N,Normal Control,White,Non-Spanish; Non-Hispanic,13,"Skin Cancer, Non-Melanoma",F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_024_N,Normal Control,Unkown,Non-Spanish; Non-Hispanic,18,Osteosarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_016_N,Normal Control,White,Non-Spanish; Non-Hispanic,21,Soft Tissue Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_054_N,Normal Control,African American,Non-Spanish; Non-Hispanic,32,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_020_N,Normal Control,White,Unknown,20,Soft Tissue Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_070_N,Normal Control,White,Non-Spanish; Non-Hispanic,23,Melanoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_012_N,Normal Control,White,Non-Spanish; Non-Hispanic,20,Ewing Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_067_N,Normal Control,White,Non-Spanish; Non-Hispanic,29,Colorectal Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_071_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,10,Retinoblastoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_023_N,Normal Control,White,Non-Spanish; Non-Hispanic,32,Colorectal Cancer,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_039_N,Normal Control,White,Non-Spanish; Non-Hispanic,20,Diffuse astrocytoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_065_N,Normal Control,White,Non-Spanish; Non-Hispanic,20,Soft Tissue Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_052_N,Normal Control,White,Non-Spanish; Non-Hispanic,30,Colorectal Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_051_N,Normal Control,White,Non-Spanish; Non-Hispanic,28,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,2,0,1,<=2%
+DF_NC_037_N,Normal Control,White,Non-Spanish; Non-Hispanic,19,Bladder Cancer,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_036_N,Normal Control,Unkown,"Spanish NOS; Hispanic NOS, Latino NOS",47,Endometrial Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_055_N,Normal Control,White,Non-Spanish; Non-Hispanic,20,Nerve Sheath Tumor,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_001_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,25,Pheochromocytoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+DF_NC_044_N,Normal Control,White,Non-Spanish; Non-Hispanic,28,Astrocytoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_004_N,Normal Control,White,Non-Spanish; Non-Hispanic,34,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+DF_NC_030_N,Normal Control,White,Non-Spanish; Non-Hispanic,27,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_013_N,Normal Control,African American,Non-Spanish; Non-Hispanic,46,Prostate Cancer,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,1,0,1,0,<=2%
+DF_NC_014_N,Normal Control,Other,"Spanish NOS; Hispanic NOS, Latino NOS",24,Esophagogastric Carcinoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_017_N,Normal Control,White,Non-Spanish; Non-Hispanic,17,Soft Tissue Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_022_N,Normal Control,White,Non-Spanish; Non-Hispanic,48,Melanoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,>2%
+DF_NC_041_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,14,Ewing Sarcoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_043_N,Normal Control,White,Non-Spanish; Non-Hispanic,41,Colorectal Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+DF_NC_011_N,Normal Control,White,Non-Spanish; Non-Hispanic,15,ADAMANTINOMAÊ,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_005_N,Normal Control,White,Non-Spanish; Non-Hispanic,16,Osteosarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_027_N,Normal Control,White,Non-Spanish; Non-Hispanic,21,Hepatocellular Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_026_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,12,Osteosarcoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_060_N,Normal Control,Unkown,Hispanic/Latino,20,Osteosarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_050_N,Normal Control,White,Non-Spanish; Non-Hispanic,40,Melanoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_021_N,Normal Control,Other,Non-Spanish; Non-Hispanic,17,Ewing Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+DF_NC_002_N,Normal Control,White,Non-Spanish; Non-Hispanic,14,Ewing Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_046_N,Normal Control,Other,South/Central America (except Brazil),25,Ampullary Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_035_N,Normal Control,Unkown,Non-Spanish; Non-Hispanic,14,Soft Tissue Sarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_038_N,Normal Control,African American,Non-Spanish; Non-Hispanic,20,Osteosarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_018_N,Normal Control,White,Non-Spanish; Non-Hispanic,17,Ovarian Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_059_N,Normal Control,White,Non-Spanish; Non-Hispanic,17,Ewing Sarcoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_087_N,Normal Control,White,"Spanish NOS; Hispanic NOS, Latino NOS",32,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_074_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,26,Endometrial Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_081_N,Normal Control,African American,Non-Spanish; Non-Hispanic,21,Cervical Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_086_N,Normal Control,White,Non-Spanish; Non-Hispanic,25,Thyroid Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_089_N,Normal Control,White,Non-Spanish; Non-Hispanic,25,Soft Tissue Sarcoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_080_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,17,Germ Cell Tumor,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_079_N,Normal Control,White,Non-Spanish; Non-Hispanic,31,Colorectal Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_082_N,Normal Control,White,Non-Spanish; Non-Hispanic,25,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_085_N,Normal Control,White,Non-Spanish; Non-Hispanic,29,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_091_N,Normal Control,White,Non-Spanish; Non-Hispanic,28,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_078_N,Normal Control,White,Non-Spanish; Non-Hispanic,30,MYXOID LIPOSARCOMA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_090_N,Normal Control,White,Non-Spanish; Non-Hispanic,8,Melanoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_075_N,Normal Control,Other,Non-Spanish; Non-Hispanic,18,Colorectal Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_072_N,Normal Control,Other,"Spanish NOS; Hispanic NOS, Latino NOS",22,Esophagogastric Carcinoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_077_N,Normal Control,White,Non-Spanish; Non-Hispanic,28,OLIGODENDROGLIOMA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_073_N,Normal Control,White,Non-Spanish; Non-Hispanic,37,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,5,0,1,<=2%
+DF_NC_088_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,18,Soft Tissue Sarcoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_076_N,Normal Control,Asian,Unknown whether Spanish or not,40,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+LBC_131,Case,White,Non-Spanish; Non-Hispanic,31,MEDULLOBLASTOMA,M,5/1/21,1,5/13/21,1,1,0,0,0,1,0,0,1,0,0,Yes,0,2,0,1,>2%
+LBC_140,Case,White,Non-Spanish; Non-Hispanic,16,Rhabdomyosarcoma,F,1/1/12,0,9/1/21,1,1,0,0,1,0,1,1,1,0,0,Yes,1,0,1,0,<=2%
+LBC_132,Case,White,Non-Spanish; Non-Hispanic,13,EMBRYONAL RHABDOMYOSARCOMA,F,7/1/13,0,5/25/21,1,0,0,0,0,0,0,0,1,0,0,No,0,0,0,0,No CH
+LBC_133,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",17,NEUROBLASTOMA,F,8/1/10,0,5/26/21,1,1,0,0,1,1,0,1,1,1,0,No,0,0,0,0,No CH
+LBC_134,Case,White,Non-Spanish; Non-Hispanic,22,Ewing sarcoma,F,8/1/12,0,6/16/21,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
+LBC_135,Case,Asian,Non-Spanish; Non-Hispanic,17,NEUROBLASTOMA,M,1/1/11,0,6/16/21,1,1,0,1,1,1,0,1,1,1,0,Yes,0,1,0,1,<=2%
+LBC_136,Case,White,Non-Spanish; Non-Hispanic,18,RHABDOID SARCOMA,M,12/1/05,0,6/29/21,1,1,0,0,1,0,1,1,1,0,0,No,0,0,0,0,No CH
+LBC_137,Case,White,Non-Spanish; Non-Hispanic,16,NEUROBLASTOMA,M,6/1/11,0,7/6/21,1,1,0,0,1,1,0,1,1,1,0,No,0,0,0,0,No CH
+LBC_138,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",17,Neuroblastoma,M,8/1/08,0,8/2/21,1,1,0,0,1,1,0,1,1,1,0,Yes,1,0,1,0,<=2%
+LBC_139,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",17,Medulloblastoma,F,7/1/10,0,8/5/21,1,1,0,0,0,1,0,0,1,0,0,No,0,0,0,0,No CH
+DF_NC_100_N,Normal Control,Asian,Non-Spanish; Non-Hispanic,28,EPITHELIOID SARCOMA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_112_N,Normal Control,African American,Non-Spanish; Non-Hispanic,32,Breast Carcinoma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_104_N,Normal Control,White,Non-Spanish; Non-Hispanic,15,Osteosarcoma,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_096_N,Normal Control,White,Non-Spanish; Non-Hispanic,33,Cervical cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+DF_NC_098_N,Normal Control,White,Non-Spanish; Non-Hispanic,29,Rectal Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_093_N,Normal Control,White,Non-Spanish; Non-Hispanic,29,CARCINOID TUMOR,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,1,0,1,0,<=2%
+DF_NC_111_N,Normal Control,White,Non-Spanish; Non-Hispanic,31,Colon cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_097_N,Normal Control,African American,Non-Spanish; Non-Hispanic,37,Lung Cancer,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+DF_NC_110_N,Normal Control,White,Non-Spanish; Non-Hispanic,33,neurofibroma,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+DF_NC_094_N,Normal Control,White,Non-Spanish; Non-Hispanic,28,Colon cancer,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,1,0,1,0,<=2%
+MCIA0030,WashU Control,White,NA,24,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,1,0,1,0,<=2%
+MCIA0031,WashU Control,White,NA,25,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0033,WashU Control,White,NA,17,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0036,WashU Control,White,NA,25,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0040,WashU Control,White,NA,23,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0085,WashU Control,White,NA,21,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0100,WashU Control,African American,NA,22,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0101,WashU Control,African American,NA,18,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0102,WashU Control,Other,NA,21,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0103,WashU Control,African American,NA,19,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0104,WashU Control,African American,NA,19,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0105,WashU Control,African American,NA,23,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0107,WashU Control,African American,NA,19,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,1,0,1,0,<=2%
+MCIA0108,WashU Control,African American,NA,19,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0113,WashU Control,White,NA,15,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+MCIA0117,WashU Control,African American,NA,21,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0120,WashU Control,African American,NA,22,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+MCIA0121,WashU Control,White,NA,21,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0122,WashU Control,White,NA,23,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0123,WashU Control,White,NA,22,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0125,WashU Control,White,NA,24,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0131,WashU Control,Asian,NA,23,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+MCIA0132,WashU Control,White,NA,25,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+MCIA0133,WashU Control,Asian,NA,25,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0137,WashU Control,White,NA,25,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0138,WashU Control,White,NA,24,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0179,WashU Control,African American,NA,17,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0287,WashU Control,White,NA,15,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0294,WashU Control,White,NA,21,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0295,WashU Control,White,NA,23,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0106,WashU Control,African American,NA,24,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0118,WashU Control,African American,NA,23,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0129,WashU Control,Asian,NA,23,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0094,WashU Control,White,NA,16,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+MCIA0095,WashU Control,White,NA,15,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0096,WashU Control,White,NA,16,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+MCIA0097,WashU Control,White,NA,15,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523007,WashU Control,White,NA,25.65366,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523003,WashU Control,Unkown,NA,34.95688,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523002,WashU Control,White,NA,21.4538,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,1,0,1,0,<=2%
+M1523004,WashU Control,Unkown,NA,30.63107,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523019,WashU Control,Unkown,NA,36.40246,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+M1523005,WashU Control,African American,NA,24.78029,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523009,WashU Control,African American,NA,34.29158,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523010,WashU Control,White,NA,29.34702,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,2,0,1,<=2%
+M1523011,WashU Control,White,NA,24.91992,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,1,0,1,<=2%
+M1523012,WashU Control,White,NA,40.29569,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523013,WashU Control,White,NA,22.22313,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523014,WashU Control,White,NA,29.63723,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,2,0,1,<=2%
+M1523015,WashU Control,Unkown,NA,28.92813,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523016,WashU Control,White,NA,41.38535,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,2,0,1,<=2%
+M1523017,WashU Control,White,NA,24.59959,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523018,WashU Control,African American,NA,23.35387,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523022,WashU Control,White,NA,32.27105,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523021,WashU Control,White,NA,36.06845,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523020,WashU Control,White,NA,32.80493,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523023,WashU Control,White,NA,50.25051,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,3,0,1,<=2%
+M1523024,WashU Control,Other,NA,28.05202,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523025,WashU Control,White,NA,19.63313,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523026,WashU Control,White,NA,23.09377,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523027,WashU Control,White,NA,21.80698,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523029,WashU Control,White,NA,27.89596,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523028,WashU Control,White,NA,50.71595,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,0,5,0,1,<=2%
+M1523030,WashU Control,White,NA,23.00616,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,1,0,1,0,<=2%
+M1523031,WashU Control,White,NA,23.22793,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523032,WashU Control,White,NA,27.72348,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523006,WashU Control,Unkown,NA,21.64545,NA,F,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH
+M1523008,WashU Control,White,NA,18.0835,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,0,0,0,0,No CH

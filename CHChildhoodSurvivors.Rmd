@@ -121,6 +121,11 @@ M <- M %>%
       Cohort == "Case" ~ "Case",
       Cohort == "Normal Control" ~ "Control",
       Cohort == "WashU Control" ~ "Control"
+    ),
+    TxBIN = case_when(
+      YearsSinceTreatment <= 5 ~ "<=5 Years After Treatment",
+      YearsSinceTreatment > 5 ~ ">5 Years After Treatment",
+      TRUE ~ "Untreated"
     )
   )
 ```
@@ -211,42 +216,7 @@ fig1d_model <- bind_rows(
     filter(term == "CohortCase")
 )
 
-genes <- D %>%
-  mutate(
-    Gene = as.factor(Gene)
-  ) %>%
-  pull(Gene) %>%
-  unique()
 suppfig1_model <- bind_rows(
-  map(genes, function(gene) {
-    Samples <- D %>%
-      filter(Gene == gene) %>%
-      pull(SampleID)
-    M %>%
-      mutate(
-        CH_Gene = if_else(
-          SampleID %in% Samples,
-          1,
-          0
-        )
-      ) %>%
-      logistf(
-        formula = CH_Gene ~ Cohort + Age + Gender + Race,
-        family = "binomial"
-      ) %>%
-      get_model_data(
-        type = "est"
-      ) %>%
-      mutate(
-        Gene = gene
-      ) %>%
-      filter(
-        term == "CohortControl"
-      )
-  })
-)
-
-suppfig4_model <- bind_rows(
   M %>%
     mutate(
       Origin = relevel(factor(Origin), ref = "Healthy Control")
@@ -289,6 +259,41 @@ suppfig4_model <- bind_rows(
     get_model_data(
       type = "est"
     )
+)
+
+genes <- D %>%
+  mutate(
+    Gene = as.factor(Gene)
+  ) %>%
+  pull(Gene) %>%
+  unique()
+suppfig3_model <- bind_rows(
+  map(genes, function(gene) {
+    Samples <- D %>%
+      filter(Gene == gene) %>%
+      pull(SampleID)
+    M %>%
+      mutate(
+        CH_Gene = if_else(
+          SampleID %in% Samples,
+          1,
+          0
+        )
+      ) %>%
+      logistf(
+        formula = CH_Gene ~ Cohort + Age + Gender + Race,
+        family = "binomial"
+      ) %>%
+      get_model_data(
+        type = "est"
+      ) %>%
+      mutate(
+        Gene = gene
+      ) %>%
+      filter(
+        term == "CohortControl"
+      )
+  })
 )
 
 ```
@@ -501,68 +506,74 @@ Fig1
 ```
 
 # Supp Figure 1
-```{r Distrubtion by Gene per Sample}
+```{r Overall Frequency of CH }
 D %>%
-  distinct(Gene, SampleID, Cohort) %>%
-  group_by(Gene, Cohort) %>%
-  summarise(Samples = sum(n())) %>%
+  filter(ch_pd_kb == 1) %>%
+  group_by(Origin) %>%
+  summarise(Frequency = n_distinct(SampleID)) %>%
   left_join(
-    D %>%
-      distinct(Cohort, SampleID) %>%
-      group_by(Cohort) %>%
+    M %>%
+      group_by(Origin) %>%
       summarise(Total = n()),
-    by = "Cohort"
+    by = "Origin"
   ) %>%
-  mutate(Proportion = Samples/Total) %>%
-  filter(Gene != "No Mutation") %>%
+  mutate(
+    Proportion = Frequency/Total
+  ) %>%
   ggplot(
-    aes(x = reorder(Gene, -Proportion),
+    aes(x = Origin,
         y = Proportion,
-        fill = Cohort
+        fill = Origin
     )
-  ) +
+  ) + 
   geom_bar(
     stat = "identity",
     position = position_dodge(preserve = "single")
   ) +
   geom_signif(
-    y_position = 0.17,
-    xmin = 2.8,
-    xmax = 3.2,
+    y_position = 0.42,
+    xmin = 1,
+    xmax = 2, 
     annotation = paste0("p = ", 
-                        format(suppfig1_model$p.value[1], digits = 1), 
+                        format(suppfig1_model$p.value[1], digits = 1),
                         suppfig1_model$p.stars[1]
-                 ),
+                        ),
     tip_length = 0.03,
-    size = 0.03
+    size = 0.3
   ) +
   geom_signif(
-    y_position = 0.15,
-    xmin = 1.8,
-    xmax = 2.2,
+    y_position = 0.45,
+    xmin = 1,
+    xmax = 3, 
     annotation = paste0("p = ", 
-                        format(suppfig1_model$p.value[2], digits = 1), 
+                        format(suppfig1_model$p.value[2], digits = 1),
                         suppfig1_model$p.stars[2]
-                 ),
+                        ),
     tip_length = 0.03,
-    size = 0.03
-  ) + 
-  geom_signif(
-    y_position = 0.11,
-    xmin = 3.8,
-    xmax = 4.2,
-    annotation = paste0("p = ", 
-                        format(suppfig1_model$p.value[5], digits = 1), 
-                        suppfig1_model$p.stars[5]
-                 ),
-    tip_length = 0.03,
-    size = 0.03,
+    size = 0.3
   ) +
+  geom_signif(
+    y_position = 0.32,
+    xmin = 2,
+    xmax = 3, 
+    annotation = paste0("p = ", 
+                        format(suppfig1_model$p.value[3], digits = 1),
+                        suppfig1_model$p.stars[3]
+                        ),
+    tip_length = 0.03,
+    size = 0.3
+  ) +
+  geom_text(
+    aes(label = Frequency,
+        vjust = -1
+    )
+  ) +
+  ylim(0, 0.5) +
   labs(x = "",
-       y = "Proportion of Samples"
+       y = "Proportion of CH Positive Samples"
   ) +
   panel_theme_basic +
-  scale_fill_nejm() + scale_color_nejm()
+  scale_fill_nejm() + scale_color_nejm() 
 ```
 
 # Supp Figure 2
@@ -596,7 +607,172 @@ D %>%
   scale_fill_nejm() + scale_color_nejm()
 ```
 
-# Supp Figure 3
+# Supp Figure 3A
+```{r Number of Mutations Per Sample}
+M %>%
+  left_join(
+    D %>%
+      filter(ch_pd_kb == 1) %>%
+      group_by(SampleID, Cohort) %>%
+      summarise(MutationsPerSample = n()),
+    by = c("SampleID", "Cohort")
+  ) %>%
+  mutate(
+    TotalMutations = case_when(
+      is.na(MutationsPerSample) ~ "0",
+      MutationsPerSample == 1 ~ "1",
+      MutationsPerSample == 2 ~ "2",
+      MutationsPerSample == 3 ~ "3",
+      MutationsPerSample == 4 ~ "4",
+      MutationsPerSample == 5 ~ "5",
+      MutationsPerSample == 6 ~ "6",
+      MutationsPerSample == 7 ~ "7",
+      MutationsPerSample == 8 ~ "9",
+      TRUE ~ "9+"
+    )
+  ) %>% 
+  group_by(TotalMutations, Cohort) %>%
+  summarise(Frequency = n()) %>%
+  filter(TotalMutations != "0") %>%
+  ggplot(
+    aes(x = TotalMutations,
+        y = Frequency,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  labs(x = "Number of Samples",
+       y = "Total # of Mutations"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```
+
+# Supp Figure 3B
+```{r Distrubtion by Gene per Sample}
+D %>%
+  distinct(Gene, SampleID, Cohort) %>%
+  group_by(Gene, Cohort) %>%
+  summarise(Samples = sum(n())) %>%
+  left_join(
+    D %>%
+      distinct(Cohort, SampleID) %>%
+      group_by(Cohort) %>%
+      summarise(Total = n()),
+    by = "Cohort"
+  ) %>%
+  mutate(Proportion = Samples/Total) %>%
+  filter(Gene != "No Mutation") %>%
+  ggplot(
+    aes(x = reorder(Gene, -Proportion),
+        y = Proportion,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.17,
+    xmin = 2.8,
+    xmax = 3.2,
+    annotation = paste0("p = ", 
+                        format(suppfig3_model$p.value[1], digits = 1), 
+                        suppfig1_model$p.stars[1]
+                 ),
+    tip_length = 0.03,
+    size = 0.03
+  ) +
+  geom_signif(
+    y_position = 0.15,
+    xmin = 1.8,
+    xmax = 2.2,
+    annotation = paste0("p = ", 
+                        format(suppfig3_model$p.value[2], digits = 1), 
+                        suppfig1_model$p.stars[2]
+                 ),
+    tip_length = 0.03,
+    size = 0.03
+  ) + 
+  geom_signif(
+    y_position = 0.11,
+    xmin = 3.8,
+    xmax = 4.2,
+    annotation = paste0("p = ", 
+                        format(suppfig3_model$p.value[5], digits = 1), 
+                        suppfig1_model$p.stars[5]
+                 ),
+    tip_length = 0.03,
+    size = 0.03,
+  ) +
+  labs(x = "",
+       y = "Proportion of Samples"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```
+
+# Supp Figure 4
+```{r}
+M %>%
+  mutate(
+    TxBIN = relevel(factor(TxBIN), ref = "Untreated")
+  ) %>%
+  filter(TxBIN == ">5 Years After Treatment" | TxBIN == "Untreated") %>%
+  glm(
+    data = .,
+    CH_Binary ~ TxBIN + Age + Gender + Race,
+    family = "binomial"
+  ) %>%
+  get_model_data(
+    type = "est"
+  )
+
+M %>%
+  mutate(
+    TxBIN = relevel(factor(TxBIN), ref = "Untreated")
+  ) %>%
+  filter(TxBIN == "<=5 Years After Treatment" | TxBIN == "Untreated") %>%
+  glm(
+    data = .,
+    CH_Binary ~ TxBIN + Age + Gender + Race,
+    family = "binomial"
+  ) %>%
+  get_model_data(
+    type = "est"
+  )
+
+M %>% 
+  ggplot(
+    aes(x = Age,
+        y = CH_Binary,
+        color = TxBIN
+    )
+  ) +
+  geom_smooth(
+    method = "gam",
+    formula = y ~ s(x),
+    method.args = list(family = "binomial"),
+    size = 1.5,
+    se = TRUE,
+    alpha = 0.1
+  ) +
+  scale_y_continuous(
+    labels = scales::label_percent(accuracy = 1L),
+    expand = expansion(add = c(0.01, 0.01))
+  ) +
+  labs(x = "Age",
+       y = "Frequency (%)"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```
+
+# Supp Figure Donut
 ```{r Donut Plot of SNPs}
 D_ <- D %>% 
   filter(
@@ -640,121 +816,6 @@ d2 <- D_ %>%
   panel_theme_donut +
   scale_fill_nejm() + scale_color_nejm() 
 
-SuppFig3 <- d1 + d2
-SuppFig3
-```
-
-# Supp Figure 4
-```{r Overall Frequency of CH }
-D %>%
-  filter(ch_pd_kb == 1) %>%
-  group_by(Origin) %>%
-  summarise(Frequency = n_distinct(SampleID)) %>%
-  left_join(
-    M %>%
-      group_by(Origin) %>%
-      summarise(Total = n()),
-    by = "Origin"
-  ) %>%
-  mutate(
-    Proportion = Frequency/Total
-  ) %>%
-  ggplot(
-    aes(x = Origin,
-        y = Proportion,
-        fill = Origin
-    )
-  ) + 
-  geom_bar(
-    stat = "identity",
-    position = position_dodge(preserve = "single")
-  ) +
-  geom_signif(
-    y_position = 0.42,
-    xmin = 1,
-    xmax = 2, 
-    annotation = paste0("p = ", 
-                        format(suppfig4_model$p.value[1], digits = 1),
-                        suppfig4_model$p.stars[1]
-                        ),
-    tip_length = 0.03,
-    size = 0.3
-  ) +
-  geom_signif(
-    y_position = 0.45,
-    xmin = 1,
-    xmax = 3, 
-    annotation = paste0("p = ", 
-                        format(suppfig4_model$p.value[2], digits = 1),
-                        suppfig4_model$p.stars[2]
-                        ),
-    tip_length = 0.03,
-    size = 0.3
-  ) +
-  geom_signif(
-    y_position = 0.32,
-    xmin = 2,
-    xmax = 3, 
-    annotation = paste0("p = ", 
-                        format(suppfig4_model$p.value[3], digits = 1),
-                        suppfig4_model$p.stars[3]
-                        ),
-    tip_length = 0.03,
-    size = 0.3
-  ) +
-  geom_text(
-    aes(label = Frequency,
-        vjust = -1
-    )
-  ) +
-  ylim(0, 0.5) +
-  labs(x = "",
-       y = "Proportion of CH Positive Samples"
-  ) +
-  panel_theme_basic +
-  scale_fill_nejm() + scale_color_nejm() 
-```
-
-# Supp Figure 5
-```{r Number of Mutations Per Sample}
-M %>%
-  left_join(
-    D %>%
-      filter(ch_pd_kb == 1) %>%
-      group_by(SampleID, Cohort) %>%
-      summarise(MutationsPerSample = n()),
-    by = c("SampleID", "Cohort")
-  ) %>%
-  mutate(
-    TotalMutations = case_when(
-      is.na(MutationsPerSample) ~ "0",
-      MutationsPerSample == 1 ~ "1",
-      MutationsPerSample == 2 ~ "2",
-      MutationsPerSample == 3 ~ "3",
-      MutationsPerSample == 4 ~ "4",
-      MutationsPerSample == 5 ~ "5",
-      MutationsPerSample == 6 ~ "6",
-      MutationsPerSample == 7 ~ "7",
-      MutationsPerSample == 8 ~ "9",
-      TRUE ~ "9+"
-    )
-  ) %>% 
-  group_by(TotalMutations, Cohort) %>%
-  summarise(Frequency = n()) %>%
-  filter(TotalMutations != "0") %>%
-  ggplot(
-    aes(x = TotalMutations,
-        y = Frequency,
-        fill = Cohort
-    )
-  ) +
-  geom_bar(
-    stat = "identity",
-    position = position_dodge(preserve = "single")
-  ) +
-  labs(x = "Number of Samples",
-       y = "Total # of Mutations"
-  ) +
-  panel_theme_basic +
-  scale_fill_nejm() + scale_color_nejm()
+SuppFigDonut <- d1 + d2
+SuppFigDonut
 ```

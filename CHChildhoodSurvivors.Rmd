@@ -130,6 +130,20 @@ M <- M %>%
   )
 ```
 
+```{r Filtering}
+# Removing Duplicate Sample and ALL Patients with Secondary Solid Cancer
+M <- M %>%
+  filter(
+    !SampleID %in% c("LBC_018", "LBC_041", "LBC_116")
+  )
+
+# Removing SMN - If needed
+# M %>%
+#   filter(
+#     !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
+#   )
+```
+
 ```{r Statistical Models, message = FALSE, warning = FALSE}
 fig1b_model <- M %>%
   mutate(
@@ -295,7 +309,6 @@ suppfig3_model <- bind_rows(
       )
   })
 )
-
 ```
 # Table 1
 ```{r Table1}

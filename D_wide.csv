@@ -7,7 +7,7 @@ LBC_064,Case,White,Non-Spanish; Non-Hispanic,20,Ewing Sarcoma,F,726,1.9890411,0,
 LBC_057,Case,White,Non-Spanish; Non-Hispanic,20,EWING'S SARCOMA,F,1315,3.60273973,0,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
 LBC_060,Case,African American,Non-Spanish; Non-Hispanic,18,Osteosarcoma,F,1094,2.99726027,0,1,0,0,0,1,1,0,0,0,0,0,Yes,1,0,1,0,<=2%
 LBC_036,Case,African American,"Spanish  NOS; Hispanic NOS, Latino NOS",16,"Pilocytic astrocytoma, KIAA1549-BRAF fusion positive",M,2276,6.23561644,0,1,0,0,0,0,0,1,0,0,0,0,No,0,0,0,0,No CH
-LBC_053,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,52,0.14246575,1,1,0,0,1,1,1,1,1,1,0,1,No,0,0,0,0,No CH
+LBC_053,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,341,0.9342466,1,1,0,0,1,1,1,1,1,1,0,1,No,0,0,0,0,No CH
 LBC_101,Case,Asian,Non-Spanish; Non-Hispanic,27,"PAPILLARY ADENOCARCINOMA, NOS",F,5219,14.2986301,1,0,1,1,0,0,0,0,0,0,0,1,No,0,0,0,0,No CH
 LBC_103,Case,White,Non-Spanish; Non-Hispanic,25,EWING'S SARCOMA,M,1305,3.57534247,0,1,0,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
 LBC_077,Case,White,Non-Spanish; Non-Hispanic,19,EWING'S SARCOMA,M,681,1.86575342,1,1,1,0,0,1,0,0,1,1,0,0,Yes,1,0,1,0,<=2%
@@ -22,14 +22,14 @@ LBC_070,Case,White,Unknown whether Spanish or not,21,EMBRYONAL RHABDOMYOSARCOMA,
 LBC_098,Case,White,"Spanish  NOS; Hispanic NOS, Latino NOS",25,"NEURILEMMOMA, NOS",M,3951,10.8246575,1,1,1,0,0,1,0,1,1,1,0,1,No,0,0,0,0,No CH
 LBC_055,Case,White,Non-Spanish; Non-Hispanic,19,ATYPICAL TERATOID/RHABDOID TUMOR (C71._),F,4241,11.6191781,0,1,1,0,0,1,1,0,1,1,0,0,No,0,0,0,0,No CH
 LBC_122,Case,White,Non-Spanish; Non-Hispanic,47,EMBRYONAL RHABDOMYOSARCOMA,M,5656,15.4958904,0,1,1,0,0,1,1,0,1,1,0,0,Yes,1,7,1,1,<=2%
-LBC_005,Case,White,Non-Spanish; Non-Hispanic,13,Neuroblastoma,M,330,0.90410959,1,1,0,0,0,1,0,1,1,1,0,0,No,0,0,0,0,No CH
+LBC_005,Case,White,Non-Spanish; Non-Hispanic,13,Neuroblastoma,M,4590,12.57534,1,1,0,0,0,1,0,1,1,1,0,0,No,0,0,0,0,No CH
 LBC_084,Case,White,Non-Spanish; Non-Hispanic,22,EWING'S SARCOMA,F,4327,11.8547945,0,1,1,0,0,1,0,0,1,1,0,0,No,0,0,0,0,No CH
 LBC_071,Case,White,Non-Spanish; Non-Hispanic,21,WILMS TUMOR,M,6979,19.1205479,0,1,1,0,0,1,0,0,0,0,0,0,No,0,0,0,0,No CH
 LBC_024,Case,African American,"Spanish  NOS; Hispanic NOS, Latino NOS",15,High grade histiocytoma / high grade spindle cell sarcoma,F,646,1.76986301,0,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
 LBC_106,Case,White,Non-Spanish; Non-Hispanic,31,Osteosarcoma,F,3926,10.7561644,0,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
 LBC_062,Case,Unkown,Non-Spanish; Non-Hispanic,20,"NEUROBLASTOMA, NOS",F,6469,17.7232877,0,1,1,0,1,1,1,1,1,1,1,0,No,0,0,0,0,No CH
 LBC_022,Case,White,Unknown whether Spanish or not,16,"OSTEOSARCOMA, NOS",M,3888,10.6520548,0,1,0,0,0,1,1,0,0,0,0,0,No,0,0,0,0,No CH
-LBC_015,Case,White,Non-Spanish; Non-Hispanic,13,"HODGKIN'S, NODULAR SCLEROSIS, NOS",M,-48,-0.1315068,0,1,1,0,1,1,0,0,1,1,1,0,No,0,0,0,0,No CH
+LBC_015,Case,White,Non-Spanish; Non-Hispanic,13,"HODGKIN'S, NODULAR SCLEROSIS, NOS",M,313,0.8575342,0,1,1,0,1,1,0,0,1,1,1,0,No,0,0,0,0,No CH
 LBC_102,Case,White,Non-Spanish; Non-Hispanic,28,EMBRYONAL RHABDOMYOSARCOMA,F,8122,22.2520548,0,1,1,0,0,1,0,0,0,1,0,0,Yes,0,0,0,0,>2%
 LBC_114,Case,White,Non-Spanish; Non-Hispanic,35,HODGKIN LYMPHOMA,M,7482,20.4986301,0,0,1,0,0,1,0,0,0,1,0,0,Yes,1,0,1,0,<=2%
 LBC_065,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,1175,3.21917808,0,1,0,0,0,1,1,0,0,1,0,0,Yes,1,1,1,1,<=2%

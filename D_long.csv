@@ -11,7 +11,7 @@ LBC_064,Case,White,Non-Spanish; Non-Hispanic,20,Ewing Sarcoma,F,726,0,1,1,0,0,1,
 LBC_057,Case,White,Non-Spanish; Non-Hispanic,20,EWING'S SARCOMA,F,1315,0,1,1,0,0,1,0,0,1,1,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_060,Case,African American,Non-Spanish; Non-Hispanic,18,Osteosarcoma,F,1094,0,1,0,0,0,1,1,0,0,0,0,0,chr17 60663262 C>CA,chr17,60663262,C,CA,PPM1D,0.0013,OncoKB,No Review,1,0
 LBC_036,Case,African American,"Spanish  NOS; Hispanic NOS, Latino NOS",16,"Pilocytic astrocytoma, KIAA1549-BRAF fusion positive",M,2276,0,1,0,0,0,0,0,1,0,0,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
-LBC_053,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,52,1,1,0,0,1,1,1,1,1,1,0,1,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
+LBC_053,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,341,1,1,0,0,1,1,1,1,1,1,0,1,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_101,Case,Asian,Non-Spanish; Non-Hispanic,27,"PAPILLARY ADENOCARCINOMA, NOS",F,5219,1,0,1,1,0,0,0,0,0,0,0,1,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_103,Case,White,Non-Spanish; Non-Hispanic,25,EWING'S SARCOMA,M,1305,0,1,0,0,0,1,0,0,1,1,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_077,Case,White,Non-Spanish; Non-Hispanic,19,EWING'S SARCOMA,M,681,1,1,1,0,0,1,0,0,1,1,0,0,chr17 60663448 C>T,chr17,60663448,C,T,PPM1D,0.0012,Nonsense Mutation on Exon 6,No Review,1,0
@@ -34,14 +34,14 @@ LBC_122,Case,White,Non-Spanish; Non-Hispanic,47,EMBRYONAL RHABDOMYOSARCOMA,M,565
 LBC_122,Case,White,Non-Spanish; Non-Hispanic,47,EMBRYONAL RHABDOMYOSARCOMA,M,5656,0,1,1,0,0,1,1,0,1,1,0,0,chr2 25245318 AG>A,chr2,25245318,AG,A,DNMT3A,0.016058667,Nonsense Mutation in TSG,No Review,1,0
 LBC_122,Case,White,Non-Spanish; Non-Hispanic,47,EMBRYONAL RHABDOMYOSARCOMA,M,5656,0,1,1,0,0,1,1,0,1,1,0,0,chr4 105259672 CTT>C,chr4,105259672,CTT,C,TET2,0.0011175,Nonsense Mutation in TSG,No Review,1,0
 LBC_122,Case,White,Non-Spanish; Non-Hispanic,47,EMBRYONAL RHABDOMYOSARCOMA,M,5656,0,1,1,0,0,1,1,0,1,1,0,0,chr4 105275146 C>T,chr4,105275146,C,T,TET2,0.003257667,Nonsense Mutation in TSG,No Review,1,0
-LBC_005,Case,White,Non-Spanish; Non-Hispanic,13,Neuroblastoma,M,330,1,1,0,0,0,1,0,1,1,1,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
+LBC_005,Case,White,Non-Spanish; Non-Hispanic,13,Neuroblastoma,M,4590,1,1,0,0,0,1,0,1,1,1,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_084,Case,White,Non-Spanish; Non-Hispanic,22,EWING'S SARCOMA,F,4327,0,1,1,0,0,1,0,0,1,1,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_071,Case,White,Non-Spanish; Non-Hispanic,21,WILMS TUMOR,M,6979,0,1,1,0,0,1,0,0,0,0,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_024,Case,African American,"Spanish  NOS; Hispanic NOS, Latino NOS",15,High grade histiocytoma / high grade spindle cell sarcoma,F,646,0,1,0,0,0,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_106,Case,White,Non-Spanish; Non-Hispanic,31,Osteosarcoma,F,3926,0,1,0,0,0,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_062,Case,Unkown,Non-Spanish; Non-Hispanic,20,"NEUROBLASTOMA, NOS",F,6469,0,1,1,0,1,1,1,1,1,1,1,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_022,Case,White,Unknown whether Spanish or not,16,"OSTEOSARCOMA, NOS",M,3888,0,1,0,0,0,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
-LBC_015,Case,White,Non-Spanish; Non-Hispanic,13,"HODGKIN'S, NODULAR SCLEROSIS, NOS",M,-48,0,1,1,0,1,1,0,0,1,1,1,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
+LBC_015,Case,White,Non-Spanish; Non-Hispanic,13,"HODGKIN'S, NODULAR SCLEROSIS, NOS",M,313,0,1,1,0,1,1,0,0,1,1,1,0,NA,NA,NA,NA,NA,No Mutation,NA,NA,NA,NA,NA
 LBC_102,Case,White,Non-Spanish; Non-Hispanic,28,EMBRYONAL RHABDOMYOSARCOMA,F,8122,0,1,1,0,0,1,0,0,0,1,0,0,chr9 5073770 G>T,chr9,5073770,G,T,JAK2,0.020846,OncoKB,No Review,1,0
 LBC_114,Case,White,Non-Spanish; Non-Hispanic,35,HODGKIN LYMPHOMA,M,7482,0,0,1,0,0,1,0,0,0,1,0,0,chr17 7675205 T>A,chr17,7675205,T,A,TP53,0.0011,OncoKB,No Review,1,0
 LBC_065,Case,White,Non-Spanish; Non-Hispanic,19,Osteosarcoma,F,1175,0,1,0,0,0,1,1,0,0,1,0,0,chr17 7674918 A>C,chr17,7674918,A,C,TP53,0.0013,OncoKB,No Review,1,0

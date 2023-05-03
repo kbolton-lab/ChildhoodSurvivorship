@@ -137,6 +137,12 @@ M <- M %>%
     !SampleID %in% c("LBC_018", "LBC_041", "LBC_116")
   )
 
+# Removing Patient that relapsed 6x over 20+ Years
+M <- M %>% 
+  filter(
+    !SampleID %in% c("LBC_093")
+  )
+
 # Removing SMN - If needed
 # M %>%
 #   filter(

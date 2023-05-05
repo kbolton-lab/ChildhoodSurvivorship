@@ -38,6 +38,12 @@
 <symbol overflow="visible" id="glyph0-11">
 <path style="stroke:none;" d="M 5.78125 -7.59375 L 5.78125 -6.75 C 5.53125 -6.507812 5.195312 -6.085938 4.78125 -5.484375 C 4.375 -4.890625 4.007812 -4.25 3.6875 -3.5625 C 3.375 -2.882812 3.140625 -2.269531 2.984375 -1.71875 C 2.878906 -1.363281 2.742188 -0.789062 2.578125 0 L 1.5 0 C 1.75 -1.476562 2.289062 -2.945312 3.125 -4.40625 C 3.613281 -5.257812 4.128906 -6 4.671875 -6.625 L 0.40625 -6.625 L 0.40625 -7.59375 Z M 5.78125 -7.59375 "/>
 </symbol>
+<symbol overflow="visible" id="glyph0-12">
+<path style="stroke:none;" d="M 0.84375 -7.921875 L 2.109375 -7.921875 L 6.109375 -1.5 L 6.109375 -7.921875 L 7.125 -7.921875 L 7.125 0 L 5.921875 0 L 1.859375 -6.40625 L 1.859375 0 L 0.84375 0 Z M 3.921875 -7.921875 Z M 3.921875 -7.921875 "/>
+</symbol>
+<symbol overflow="visible" id="glyph0-13">
+<path style="stroke:none;" d="M 4.90625 -3.25 L 3.703125 -6.75 L 2.421875 -3.25 Z M 3.140625 -7.921875 L 4.359375 -7.921875 L 7.234375 0 L 6.0625 0 L 5.25 -2.375 L 2.125 -2.375 L 1.265625 0 L 0.15625 0 Z M 3.140625 -7.921875 "/>
+</symbol>
 <symbol overflow="visible" id="glyph1-0">
 <path style="stroke:none;" d="M 0.390625 0 L 0.390625 -8.609375 L 7.21875 -8.609375 L 7.21875 0 Z M 6.140625 -1.078125 L 6.140625 -7.53125 L 1.46875 -7.53125 L 1.46875 -1.078125 Z M 6.140625 -1.078125 "/>
 </symbol>
@@ -202,7 +208,7 @@
   <path d="M 44.164062 51 L 504 51 L 504 53 L 44.164062 53 Z M 44.164062 51 "/>
 </clipPath>
 </defs>
-<g id="surface104">
+<g id="surface124">
 <rect x="0" y="0" width="504" height="360" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <rect x="0" y="0" width="504" height="360" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <path style="fill:none;stroke-width:1.066978;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 0 360 L 504 360 L 504 0 L 0 0 Z M 0 360 "/>
@@ -249,31 +255,34 @@
 <path style="fill:none;stroke-width:0.0640187;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 197.445312 58.828125 L 222.988281 58.828125 "/>
 <path style="fill:none;stroke-width:0.0640187;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 222.988281 58.828125 L 222.988281 65.640625 "/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-1" x="118.578125" y="82.777344"/>
-  <use xlink:href="#glyph0-2" x="124.717863" y="82.777344"/>
-  <use xlink:href="#glyph0-3" x="127.785037" y="82.777344"/>
-  <use xlink:href="#glyph0-2" x="134.232031" y="82.777344"/>
-  <use xlink:href="#glyph0-8" x="137.299205" y="82.777344"/>
-  <use xlink:href="#glyph0-5" x="143.438943" y="82.777344"/>
-  <use xlink:href="#glyph0-6" x="149.578681" y="82.777344"/>
-  <use xlink:href="#glyph0-7" x="153.254977" y="82.777344"/>
-  <use xlink:href="#glyph0-10" x="159.394715" y="82.777344"/>
-  <use xlink:href="#glyph0-9" x="165.534453" y="82.777344"/>
-  <use xlink:href="#glyph0-9" x="169.830652" y="82.777344"/>
+  <use xlink:href="#glyph0-1" x="116.429688" y="82.777344"/>
+  <use xlink:href="#glyph0-2" x="122.569425" y="82.777344"/>
+  <use xlink:href="#glyph0-3" x="125.636599" y="82.777344"/>
+  <use xlink:href="#glyph0-2" x="132.083594" y="82.777344"/>
+  <use xlink:href="#glyph0-8" x="135.150767" y="82.777344"/>
+  <use xlink:href="#glyph0-5" x="141.290505" y="82.777344"/>
+  <use xlink:href="#glyph0-6" x="147.430243" y="82.777344"/>
+  <use xlink:href="#glyph0-7" x="151.106539" y="82.777344"/>
+  <use xlink:href="#glyph0-10" x="157.246277" y="82.777344"/>
+  <use xlink:href="#glyph0-9" x="163.386015" y="82.777344"/>
+  <use xlink:href="#glyph0-9" x="167.682215" y="82.777344"/>
+  <use xlink:href="#glyph0-9" x="171.978414" y="82.777344"/>
 </g>
 <path style="fill:none;stroke-width:0.0640187;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 133.578125 92.191406 L 133.578125 85.378906 "/>
 <path style="fill:none;stroke-width:0.0640187;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 133.578125 85.378906 L 159.125 85.378906 "/>
 <path style="fill:none;stroke-width:0.0640187;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 159.125 85.378906 L 159.125 92.191406 "/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-1" x="250.605469" y="135.878906"/>
-  <use xlink:href="#glyph0-2" x="256.745207" y="135.878906"/>
-  <use xlink:href="#glyph0-3" x="259.81238" y="135.878906"/>
-  <use xlink:href="#glyph0-2" x="266.259375" y="135.878906"/>
-  <use xlink:href="#glyph0-11" x="269.326549" y="135.878906"/>
-  <use xlink:href="#glyph0-5" x="275.466287" y="135.878906"/>
-  <use xlink:href="#glyph0-6" x="281.606024" y="135.878906"/>
-  <use xlink:href="#glyph0-7" x="285.282321" y="135.878906"/>
-  <use xlink:href="#glyph0-8" x="291.422059" y="135.878906"/>
+  <use xlink:href="#glyph0-1" x="242.9375" y="135.878906"/>
+  <use xlink:href="#glyph0-2" x="249.077238" y="135.878906"/>
+  <use xlink:href="#glyph0-3" x="252.144412" y="135.878906"/>
+  <use xlink:href="#glyph0-2" x="258.591406" y="135.878906"/>
+  <use xlink:href="#glyph0-11" x="261.65858" y="135.878906"/>
+  <use xlink:href="#glyph0-5" x="267.798318" y="135.878906"/>
+  <use xlink:href="#glyph0-6" x="273.938056" y="135.878906"/>
+  <use xlink:href="#glyph0-7" x="277.614352" y="135.878906"/>
+  <use xlink:href="#glyph0-8" x="283.75409" y="135.878906"/>
+  <use xlink:href="#glyph0-12" x="289.893828" y="135.878906"/>
+  <use xlink:href="#glyph0-13" x="297.866323" y="135.878906"/>
 </g>
 <path style="fill:none;stroke-width:0.0640187;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 261.308594 145.292969 L 261.308594 138.480469 "/>
 <path style="fill:none;stroke-width:0.0640187;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 261.308594 138.480469 L 286.855469 138.480469 "/>

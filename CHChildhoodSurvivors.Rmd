@@ -3,9 +3,6 @@ title: "CH in Survivors of Childhood Cancer"
 author: "Irenaeus Chan"
 date: "`r format(Sys.time(), '%a %b %d, %Y %X')`"
 output:
-  github_document:
-    toc: true
-    toc_depth: 2
   html_document:
     code_folding: hide
     toc: true
@@ -16,6 +13,9 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
+  github_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ```{r setup, include=TRUE, message = FALSE, warning = FALSE}
@@ -30,6 +30,7 @@ library(ggsci)
 library(patchwork)
 library(sjPlot)
 library(purrr)
+library(knitr)
 
 panel_theme_basic = theme_bw() + theme(
   panel.border = element_blank(),
@@ -178,7 +179,10 @@ fig1c_model <- bind_rows(
     get_model_data(
       type = "est"
     ) %>% 
-    filter(term == "CohortControl"),
+    filter(term == "CohortControl") %>%
+    cbind(
+      label = "DTA"
+    ),
   M %>% logistf(
     formula = DDR_CH ~ Cohort + Age + Gender + Race,
     family = "binomial"
@@ -186,7 +190,10 @@ fig1c_model <- bind_rows(
     get_model_data(
       type = "est"
     ) %>% 
-    filter(term == "CohortControl")
+    filter(term == "CohortControl") %>%
+    cbind(
+      label = "DDR"
+    )
   )
 
 fig1d_model <- bind_rows(
@@ -253,7 +260,11 @@ suppfig1_model <- bind_rows(
     ) %>%
     get_model_data(
       type = "est"
-    ),
+    ) %>%
+    cbind(
+      label = "Case VS Healthy Control"
+    ) %>%
+    filter(term == "OriginCase"),
   M %>%
     mutate(
       Origin = relevel(factor(Origin), ref = "Healthy Control")
@@ -267,7 +278,11 @@ suppfig1_model <- bind_rows(
     ) %>%
     get_model_data(
       type = "est"
-    ),
+    ) %>%
+    cbind(
+      label = "Case VS Solid Tumor Control"
+    ) %>%
+    filter(term == "OriginSolid Tumor Control"),
   M %>%
     mutate(
       Origin = relevel(factor(Origin), ref = "Healthy Control")
@@ -281,7 +296,11 @@ suppfig1_model <- bind_rows(
     ) %>%
     get_model_data(
       type = "est"
-    )
+    ) %>%
+    cbind(
+      label = "Healthy Control VS Solid Tumor Control"
+    ) %>%
+    filter(term == "OriginSolid Tumor Control")
 )
 
 genes <- D %>%
@@ -325,7 +344,6 @@ table1(~ Age + Gender + Race + CH.Positive | Cohort, data = M)
 ```
 
 # Figure 1
-
 ```{r Fig1a - Frequency of CH Across All Ages}
 fig1a <- M %>%
   ggplot(
@@ -405,6 +423,10 @@ fig1b <- D %>%
 fig1b
 ```
 
+```{r Fig1b - Model}
+knitr::kable(fig1b_model)
+```
+
 ```{r Fig1c - Proportion of CH in Cases vs Groups Grouped by Gene Class}
 fig1c <- D %>%
   filter(Gene != "No Mutation") %>%
@@ -465,6 +487,10 @@ fig1c <- D %>%
 fig1c
 ```
 
+```{r Fig1c - Model}
+knitr::kable(fig1c_model)
+```
+
 ```{r Fig1d - Odds Ratio Grouped by VAF Bins}
 fig1d <- fig1d_model %>%
   mutate(
@@ -520,6 +546,10 @@ fig1d <- fig1d_model %>%
   ) +
   scale_fill_nejm() + scale_color_nejm()
 fig1d
+```
+
+```{r Fig1d - Model}
+knitr::kable(fig1d_model)
 ```
 
 ```{r Figure1}
@@ -596,6 +626,10 @@ D %>%
   ) +
   panel_theme_basic +
   scale_fill_nejm() + scale_color_nejm() 
+```
+
+```{r Supp Fig1 - Model}
+knitr::kable(suppfig1_model)
 ```
 
 # Supp Figure 2
@@ -738,8 +772,12 @@ D %>%
   scale_fill_nejm() + scale_color_nejm()
 ```
 
+```{r Supp Fig3 - Model}
+knitr::kable(suppfig3_model)
+```
+
 # Supp Figure 4
-```{r}
+```{r Persistent CH After Treatment}
 M %>%
   mutate(
     TxBIN = relevel(factor(TxBIN), ref = "Untreated")

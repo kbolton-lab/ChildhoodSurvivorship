@@ -1,7 +1,7 @@
 CH in Survivors of Childhood Cancer
 ================
 Irenaeus Chan
-Fri May 05, 2023 15:19:16
+Fri May 05, 2023 16:50:36
 
 -   [Table 1](#table-1)
 -   [Figure 1](#figure-1)
@@ -24,6 +24,7 @@ library(ggsci)
 library(patchwork)
 library(sjPlot)
 library(purrr)
+library(knitr)
 
 panel_theme_basic = theme_bw() + theme(
   panel.border = element_blank(),
@@ -172,7 +173,10 @@ fig1c_model <- bind_rows(
     get_model_data(
       type = "est"
     ) %>% 
-    filter(term == "CohortControl"),
+    filter(term == "CohortControl") %>%
+    cbind(
+      label = "DTA"
+    ),
   M %>% logistf(
     formula = DDR_CH ~ Cohort + Age + Gender + Race,
     family = "binomial"
@@ -180,7 +184,10 @@ fig1c_model <- bind_rows(
     get_model_data(
       type = "est"
     ) %>% 
-    filter(term == "CohortControl")
+    filter(term == "CohortControl") %>%
+    cbind(
+      label = "DDR"
+    )
   )
 
 fig1d_model <- bind_rows(
@@ -247,7 +254,11 @@ suppfig1_model <- bind_rows(
     ) %>%
     get_model_data(
       type = "est"
-    ),
+    ) %>%
+    cbind(
+      label = "Case VS Healthy Control"
+    ) %>%
+    filter(term == "OriginCase"),
   M %>%
     mutate(
       Origin = relevel(factor(Origin), ref = "Healthy Control")
@@ -261,7 +272,11 @@ suppfig1_model <- bind_rows(
     ) %>%
     get_model_data(
       type = "est"
-    ),
+    ) %>%
+    cbind(
+      label = "Case VS Solid Tumor Control"
+    ) %>%
+    filter(term == "OriginSolid Tumor Control"),
   M %>%
     mutate(
       Origin = relevel(factor(Origin), ref = "Healthy Control")
@@ -275,7 +290,11 @@ suppfig1_model <- bind_rows(
     ) %>%
     get_model_data(
       type = "est"
-    )
+    ) %>%
+    cbind(
+      label = "Healthy Control VS Solid Tumor Control"
+    ) %>%
+    filter(term == "OriginSolid Tumor Control")
 )
 
 genes <- D %>%
@@ -430,6 +449,20 @@ fig1b
 ![](CHChildhoodSurvivors_files/figure-gfm/Fig1b%20-%20Proportion%20of%20CH%20in%20Case%20vs%20Controls-1.svg)<!-- -->
 
 ``` r
+knitr::kable(fig1b_model)
+```
+
+| term       |  estimate | std.error | conf.level |  conf.low | conf.high |  statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax |
+|:-----------|----------:|----------:|-----------:|----------:|----------:|-----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|
+| CohortCase | 3.4887787 | 0.3536018 |       0.95 | 1.7732408 |  7.133664 |  3.5337826 |      Inf | 0.0004097 | \*\*\*  | 3.49 \*\*\* | pos   |    7 | 6.825 | 7.175 |
+| Age        | 1.1027638 | 0.0220527 |       0.95 | 1.0580562 |  1.154176 |  4.4357117 |      Inf | 0.0000092 | \*\*\*  | 1.10 \*\*\* | pos   |    6 | 5.825 | 6.175 |
+| GenderM    | 0.9777774 | 0.3227168 |       0.95 | 0.5161748 |  1.836976 | -0.0696375 |      Inf | 0.9444822 |         | 0.98        | neg   |    5 | 4.825 | 5.175 |
+| RaceAsian  | 0.4863056 | 0.8068862 |       0.95 | 0.0872964 |  2.240235 | -0.8934570 |      Inf | 0.3716125 |         | 0.49        | neg   |    4 | 3.825 | 4.175 |
+| RaceOther  | 0.5786138 | 1.1857127 |       0.95 | 0.0274480 |  4.484452 | -0.4614271 |      Inf | 0.6444922 |         | 0.58        | neg   |    3 | 2.825 | 3.175 |
+| RaceUnkown | 0.2111408 | 1.2069329 |       0.95 | 0.0096975 |  1.669136 | -1.2885804 |      Inf | 0.1975440 |         | 0.21        | neg   |    2 | 1.825 | 2.175 |
+| RaceWhite  | 0.9607478 | 0.5117836 |       0.95 | 0.3629540 |  2.768238 | -0.0782427 |      Inf | 0.9376350 |         | 0.96        | neg   |    1 | 0.825 | 1.175 |
+
+``` r
 fig1c <- D %>%
   filter(Gene != "No Mutation") %>%
   distinct(Gene_Class, SampleID, Gene, Cohort) %>%
@@ -498,6 +531,15 @@ fig1c
 ![](CHChildhoodSurvivors_files/figure-gfm/Fig1c%20-%20Proportion%20of%20CH%20in%20Cases%20vs%20Groups%20Grouped%20by%20Gene%20Class-1.svg)<!-- -->
 
 ``` r
+knitr::kable(fig1c_model)
+```
+
+| term          |  estimate | std.error | conf.level |  conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | label |
+|:--------------|----------:|----------:|-----------:|----------:|----------:|----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:------|
+| CohortControl | 0.4095453 | 0.3708715 |       0.95 | 0.1979774 | 0.8472047 |   5.83271 |        1 | 0.0157309 | \*      | 0.41 \*     | neg   |    7 | 6.825 | 7.175 | DTA   |
+| CohortControl | 0.1402059 | 0.4889828 |       0.95 | 0.0537704 | 0.3655856 |  18.37792 |        1 | 0.0000181 | \*\*\*  | 0.14 \*\*\* | neg   |    7 | 6.825 | 7.175 | DDR   |
+
+``` r
 fig1d <- fig1d_model %>%
   mutate(
     term = factor("Treated Individuals"),
@@ -558,6 +600,16 @@ fig1d
     ## Defaulting to continuous.
 
 ![](CHChildhoodSurvivors_files/figure-gfm/Fig1d%20-%20Odds%20Ratio%20Grouped%20by%20VAF%20Bins-1.svg)<!-- -->
+
+``` r
+knitr::kable(fig1d_model)
+```
+
+| term       |  estimate | std.error | conf.level | conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | VAF                       |
+|:-----------|----------:|----------:|-----------:|---------:|----------:|----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:--------------------------|
+| CohortCase |  3.319208 | 0.3418567 |       0.95 | 1.698421 |  6.486694 | 12.940884 |        1 | 0.0003215 | \*\*\*  | 3.32 \*\*\* | pos   |    7 | 6.825 | 7.175 | All VAFs                  |
+| CohortCase | 12.606471 | 0.9059414 |       0.95 | 2.135280 | 74.427291 |  7.790289 |        1 | 0.0052528 | \*\*    | 12.61 \*\*  | pos   |    7 | 6.825 | 7.175 | Greater than 2% VAF       |
+| CohortCase |  2.765850 | 0.3468881 |       0.95 | 1.401383 |  5.458839 |  8.823047 |        1 | 0.0029745 | \*\*    | 2.77 \*\*   | pos   |    7 | 6.825 | 7.175 | Less than or equal 2% VAF |
 
 ``` r
 Fig1 <- (fig1a + fig1b) / (fig1c + fig1d) + plot_annotation(tag_levels = 'A')
@@ -642,6 +694,16 @@ D %>%
 ```
 
 ![](CHChildhoodSurvivors_files/figure-gfm/Overall%20Frequency%20of%20CH-1.svg)<!-- -->
+
+``` r
+knitr::kable(suppfig1_model)
+```
+
+| term                      |  estimate | std.error | conf.level |  conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | label                                  |
+|:--------------------------|----------:|----------:|-----------:|----------:|----------:|----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:---------------------------------------|
+| OriginCase                | 2.4522857 | 0.4063158 |       0.95 | 1.1294671 | 5.6034318 |  2.207693 |      Inf | 0.0272657 | \*      | 2.45 \*     | pos   |    7 | 6.825 | 7.175 | Case VS Healthy Control                |
+| OriginSolid Tumor Control | 0.1823230 | 0.4917545 |       0.95 | 0.0648672 | 0.4526045 | -3.461027 |      Inf | 0.0005381 | \*\*\*  | 0.18 \*\*\* | neg   |    7 | 6.825 | 7.175 | Case VS Solid Tumor Control            |
+| OriginSolid Tumor Control | 0.5110508 | 0.4879018 |       0.95 | 0.1896173 | 1.3078605 | -1.375863 |      Inf | 0.1688639 |         | 0.51        | neg   |    7 | 6.825 | 7.175 | Healthy Control VS Solid Tumor Control |
 
 # Supp Figure 2
 
@@ -800,6 +862,21 @@ D %>%
 
 ![](CHChildhoodSurvivors_files/figure-gfm/Distrubtion%20by%20Gene%20per%20Sample-1.svg)<!-- -->
 
+``` r
+knitr::kable(suppfig3_model)
+```
+
+| term          |  estimate | std.error | conf.level |  conf.low |  conf.high |  statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | Gene        |
+|:--------------|----------:|----------:|-----------:|----------:|-----------:|-----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:------------|
+| CohortControl | 0.1310966 | 0.5899461 |       0.95 | 0.0412504 |  0.4166339 | 13.0318562 |        1 | 0.0003062 | \*\*\*  | 0.13 \*\*\* | neg   |    7 | 6.825 | 7.175 | TP53        |
+| CohortControl | 0.0292772 | 1.0818105 |       0.95 | 0.0035131 |  0.2439880 | 16.9061846 |        1 | 0.0000393 | \*\*\*  | 0.03 \*\*\* | neg   |    7 | 6.825 | 7.175 | PPM1D       |
+| CohortControl | 0.5576151 | 0.3873981 |       0.95 | 0.2609640 |  1.1914844 |  2.2176258 |        1 | 0.1364427 |         | 0.56        | neg   |    7 | 6.825 | 7.175 | DNMT3A      |
+| CohortControl | 3.3192078 | 0.3418567 |       0.95 | 1.6984214 |  6.4866942 | 12.9408839 |        1 | 0.0003215 | \*\*\*  | 3.32 \*\*\* | pos   |    7 | 6.825 | 7.175 | No Mutation |
+| CohortControl | 0.0796280 | 0.8121109 |       0.95 | 0.0162105 |  0.3911433 | 11.4001713 |        1 | 0.0007344 | \*\*\*  | 0.08 \*\*\* | neg   |    7 | 6.825 | 7.175 | TET2        |
+| CohortControl | 0.1249979 | 1.2337537 |       0.95 | 0.0111360 |  1.4030583 |  1.4369497 |        1 | 0.2306336 |         | 0.12        | neg   |    7 | 6.825 | 7.175 | JAK2        |
+| CohortControl | 0.4426406 | 0.8633977 |       0.95 | 0.0814940 |  2.4042336 |  0.6102383 |        1 | 0.4346981 |         | 0.44        | neg   |    7 | 6.825 | 7.175 | ASXL1       |
+| CohortControl | 2.1873568 | 0.8645115 |       0.95 | 0.4018335 | 11.9067466 |  0.6491393 |        1 | 0.4204206 |         | 2.19        | pos   |    7 | 6.825 | 7.175 | CHEK2       |
+
 # Supp Figure 4
 
 ``` r
@@ -911,7 +988,7 @@ M %>%
   scale_fill_nejm() + scale_color_nejm()
 ```
 
-![](CHChildhoodSurvivors_files/figure-gfm/unnamed-chunk-1-1.svg)<!-- -->
+![](CHChildhoodSurvivors_files/figure-gfm/unnamed-chunk-6-1.svg)<!-- -->
 
 # Supp Figure Donut
 

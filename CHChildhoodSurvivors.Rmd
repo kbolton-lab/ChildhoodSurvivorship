@@ -267,7 +267,7 @@ suppfig1_model <- bind_rows(
     filter(term == "OriginCase"),
   M %>%
     mutate(
-      Origin = relevel(factor(Origin), ref = "Healthy Control")
+      Origin = relevel(factor(Origin), ref = "Solid Tumor Control")
     ) %>%
     filter(
       Origin != "Healthy Control"
@@ -282,7 +282,7 @@ suppfig1_model <- bind_rows(
     cbind(
       label = "Case VS Solid Tumor Control"
     ) %>%
-    filter(term == "OriginSolid Tumor Control"),
+    filter(term == "OriginCase"),
   M %>%
     mutate(
       Origin = relevel(factor(Origin), ref = "Healthy Control")

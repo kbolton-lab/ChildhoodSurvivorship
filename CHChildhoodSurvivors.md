@@ -1,7 +1,7 @@
 CH in Survivors of Childhood Cancer
 ================
 Irenaeus Chan
-Fri May 05, 2023 16:50:36
+Mon May 08, 2023 13:45:17
 
 -   [Table 1](#table-1)
 -   [Figure 1](#figure-1)
@@ -261,7 +261,7 @@ suppfig1_model <- bind_rows(
     filter(term == "OriginCase"),
   M %>%
     mutate(
-      Origin = relevel(factor(Origin), ref = "Healthy Control")
+      Origin = relevel(factor(Origin), ref = "Solid Tumor Control")
     ) %>%
     filter(
       Origin != "Healthy Control"
@@ -699,11 +699,10 @@ D %>%
 knitr::kable(suppfig1_model)
 ```
 
-| term                      |  estimate | std.error | conf.level |  conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | label                                  |
-|:--------------------------|----------:|----------:|-----------:|----------:|----------:|----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:---------------------------------------|
-| OriginCase                | 2.4522857 | 0.4063158 |       0.95 | 1.1294671 | 5.6034318 |  2.207693 |      Inf | 0.0272657 | \*      | 2.45 \*     | pos   |    7 | 6.825 | 7.175 | Case VS Healthy Control                |
-| OriginSolid Tumor Control | 0.1823230 | 0.4917545 |       0.95 | 0.0648672 | 0.4526045 | -3.461027 |      Inf | 0.0005381 | \*\*\*  | 0.18 \*\*\* | neg   |    7 | 6.825 | 7.175 | Case VS Solid Tumor Control            |
-| OriginSolid Tumor Control | 0.5110508 | 0.4879018 |       0.95 | 0.1896173 | 1.3078605 | -1.375863 |      Inf | 0.1688639 |         | 0.51        | neg   |    7 | 6.825 | 7.175 | Healthy Control VS Solid Tumor Control |
+| term                      |  estimate | std.error | conf.level |  conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label | group | xpos |  xmin |  xmax | label                                  |
+|:--------------------------|----------:|----------:|-----------:|----------:|----------:|----------:|---------:|----------:|:--------|:--------|:------|-----:|------:|------:|:---------------------------------------|
+| OriginCase                | 2.4522857 | 0.4063158 |       0.95 | 1.1294671 |  5.603432 |  2.207693 |      Inf | 0.0272657 | \*      | 2.45 \* | pos   |    7 | 6.825 | 7.175 | Case VS Healthy Control                |
+| OriginSolid Tumor Control | 0.5110508 | 0.4879018 |       0.95 | 0.1896173 |  1.307861 | -1.375863 |      Inf | 0.1688639 |         | 0.51    | neg   |    7 | 6.825 | 7.175 | Healthy Control VS Solid Tumor Control |
 
 # Supp Figure 2
 
@@ -988,7 +987,7 @@ M %>%
   scale_fill_nejm() + scale_color_nejm()
 ```
 
-![](CHChildhoodSurvivors_files/figure-gfm/unnamed-chunk-6-1.svg)<!-- -->
+![](CHChildhoodSurvivors_files/figure-gfm/Persistent%20CH%20After%20Treatment-1.svg)<!-- -->
 
 # Supp Figure Donut
 

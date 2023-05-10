@@ -1,7 +1,7 @@
 CH in Survivors of Childhood Cancer
 ================
 Irenaeus Chan
-Tue May 09, 2023 16:43:26
+Wed May 10, 2023 17:51:28
 
 -   [Table 1](#table-1)
 -   [Figure 1](#figure-1)
@@ -295,6 +295,35 @@ suppfig1_model <- bind_rows(
       label = "Healthy Control VS Solid Tumor Control"
     ) %>%
     filter(term == "OriginSolid Tumor Control")
+)
+
+suppfig2_model <- bind_rows(
+  D %>%
+    filter(Gene_Class == "DDR") %>%
+    glm(
+      formula = average_AF ~ Cohort + Age + Gender + Race,
+      family = "gaussian"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      label = "DDR"
+    ) %>%
+    filter(term == "CohortControl"),
+  D %>%
+    filter(Gene_Class == "DTA") %>%
+    glm(
+      formula = average_AF ~ Cohort + Age + Gender + Race,
+      family = "gaussian"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      label = "DTA"
+    ) %>%
+    filter(term == "CohortControl")
 )
 
 genes <- D %>%
@@ -739,6 +768,15 @@ D %>%
 
 ![](CHChildhoodSurvivors_files/figure-gfm/Violin%20Plots%20of%20the%20VAF%20Distributions-1.svg)<!-- -->
 
+``` r
+knitr::kable(suppfig2_model)
+```
+
+| term          |   estimate | std.error | conf.level |   conf.low | conf.high |  statistic | df.error |   p.value | p.stars | p.label | group | xpos |  xmin |  xmax | label |
+|:--------------|-----------:|----------:|-----------:|-----------:|----------:|-----------:|---------:|----------:|:--------|:--------|:------|-----:|------:|------:|:------|
+| CohortControl | -0.0050937 | 0.0082450 |       0.95 | -0.0212536 | 0.0110662 | -0.6177921 |       37 | 0.5367124 |         | -0.01   | neg   |    4 | 3.825 | 4.175 | DDR   |
+| CohortControl | -0.0042208 | 0.0076462 |       0.95 | -0.0192072 | 0.0107655 | -0.5520117 |       70 | 0.5809404 |         | -0.00   | neg   |    7 | 6.825 | 7.175 | DTA   |
+
 # Supp Figure 3A
 
 ``` r
@@ -760,7 +798,7 @@ M %>%
       MutationsPerSample == 5 ~ "5",
       MutationsPerSample == 6 ~ "6",
       MutationsPerSample == 7 ~ "7",
-      MutationsPerSample == 8 ~ "9",
+      MutationsPerSample == 8 ~ "8",
       TRUE ~ "9+"
     )
   ) %>% 
@@ -823,7 +861,7 @@ D %>%
     xmax = 3.2,
     annotation = paste0("p = ", 
                         format(suppfig3_model$p.value[1], digits = 1), 
-                        suppfig1_model$p.stars[1]
+                        suppfig3_model$p.stars[1]
                  ),
     tip_length = 0.03,
     size = 0.03
@@ -834,7 +872,7 @@ D %>%
     xmax = 2.2,
     annotation = paste0("p = ", 
                         format(suppfig3_model$p.value[2], digits = 1), 
-                        suppfig1_model$p.stars[2]
+                        suppfig3_model$p.stars[2]
                  ),
     tip_length = 0.03,
     size = 0.03
@@ -845,7 +883,7 @@ D %>%
     xmax = 4.2,
     annotation = paste0("p = ", 
                         format(suppfig3_model$p.value[5], digits = 1), 
-                        suppfig1_model$p.stars[5]
+                        suppfig3_model$p.stars[5]
                  ),
     tip_length = 0.03,
     size = 0.03,

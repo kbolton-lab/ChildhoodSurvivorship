@@ -1,7 +1,7 @@
 CH in Survivors of Childhood Cancer
 ================
 Irenaeus Chan
-Wed May 10, 2023 17:51:28
+Thu May 11, 2023 11:44:34
 
 -   [Table 1](#table-1)
 -   [Figure 1](#figure-1)
@@ -134,15 +134,27 @@ M <- M %>%
   filter(
     !SampleID %in% c("LBC_018", "LBC_041", "LBC_116")
   )
+D <- D %>%
+  filter(
+    !SampleID %in% c("LBC_018", "LBC_041", "LBC_116")
+  )
 
 # Removing Patient that relapsed 6x over 20+ Years
 M <- M %>% 
   filter(
     !SampleID %in% c("LBC_093")
   )
+D <- D %>% 
+  filter(
+    !SampleID %in% c("LBC_093")
+  )
 
 # Removing SMN - If needed
-# M %>%
+# M <- M %>%
+#   filter(
+#     !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
+#   )
+# D <- D %>%
 #   filter(
 #     !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
 #   )
@@ -774,7 +786,7 @@ knitr::kable(suppfig2_model)
 
 | term          |   estimate | std.error | conf.level |   conf.low | conf.high |  statistic | df.error |   p.value | p.stars | p.label | group | xpos |  xmin |  xmax | label |
 |:--------------|-----------:|----------:|-----------:|-----------:|----------:|-----------:|---------:|----------:|:--------|:--------|:------|-----:|------:|------:|:------|
-| CohortControl | -0.0050937 | 0.0082450 |       0.95 | -0.0212536 | 0.0110662 | -0.6177921 |       37 | 0.5367124 |         | -0.01   | neg   |    4 | 3.825 | 4.175 | DDR   |
+| CohortControl | -0.0051067 | 0.0083614 |       0.95 | -0.0214947 | 0.0112813 | -0.6107461 |       36 | 0.5413677 |         | -0.01   | neg   |    4 | 3.825 | 4.175 | DDR   |
 | CohortControl | -0.0042208 | 0.0076462 |       0.95 | -0.0192072 | 0.0107655 | -0.5520117 |       70 | 0.5809404 |         | -0.00   | neg   |    7 | 6.825 | 7.175 | DTA   |
 
 # Supp Figure 3A

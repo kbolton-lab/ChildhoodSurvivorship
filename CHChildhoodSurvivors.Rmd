@@ -142,15 +142,27 @@ M <- M %>%
   filter(
     !SampleID %in% c("LBC_018", "LBC_041", "LBC_116")
   )
+D <- D %>%
+  filter(
+    !SampleID %in% c("LBC_018", "LBC_041", "LBC_116")
+  )
 
 # Removing Patient that relapsed 6x over 20+ Years
 M <- M %>% 
   filter(
     !SampleID %in% c("LBC_093")
   )
+D <- D %>% 
+  filter(
+    !SampleID %in% c("LBC_093")
+  )
 
 # Removing SMN - If needed
-# M %>%
+# M <- M %>%
+#   filter(
+#     !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
+#   )
+# D <- D %>%
 #   filter(
 #     !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
 #   )

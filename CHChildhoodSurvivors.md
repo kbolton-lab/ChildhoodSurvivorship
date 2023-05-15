@@ -1,15 +1,16 @@
 CH in Survivors of Childhood Cancer
 ================
 Irenaeus Chan
-Thu May 11, 2023 11:44:34
+Mon May 15, 2023 14:46:01
 
 -   [Table 1](#table-1)
 -   [Figure 1](#figure-1)
 -   [Supp Figure 1](#supp-figure-1)
 -   [Supp Figure 2](#supp-figure-2)
--   [Supp Figure 3A](#supp-figure-3a)
--   [Supp Figure 3B](#supp-figure-3b)
+-   [Supp Figure 3](#supp-figure-3)
 -   [Supp Figure 4](#supp-figure-4)
+-   [Supp Figure 5](#supp-figure-5)
+-   [Supp Figure 6](#supp-figure-6)
 -   [Supp Figure Donut](#supp-figure-donut)
 
 ``` r
@@ -123,7 +124,7 @@ M <- M %>%
     TxBIN = case_when(
       YearsSinceTreatment <= 5 ~ "<=5 Years After Treatment",
       YearsSinceTreatment > 5 ~ ">5 Years After Treatment",
-      TRUE ~ "Untreated"
+      TRUE ~ "Controls"
     )
   )
 ```
@@ -149,15 +150,15 @@ D <- D %>%
     !SampleID %in% c("LBC_093")
   )
 
-# Removing SMN - If needed
-# M <- M %>%
-#   filter(
-#     !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
-#   )
-# D <- D %>%
-#   filter(
-#     !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
-#   )
+# Removing SMN
+M_sens <- M %>%
+  filter(
+    !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
+  )
+D_sens <- D %>%
+  filter(
+    !SampleID %in% c("LBC_005", "LBC_077", "LBC_053", "LBC_063", "LBC_098", "LBC_101")
+  )
 ```
 
 ``` r
@@ -177,32 +178,6 @@ fig1b_model <- M %>%
   )
 
 fig1c_model <- bind_rows(
-  M %>%
-    logistf(
-      formula = DTA_CH ~ Cohort + Age + Gender + Race,
-      family = "binomial"
-    ) %>%
-    get_model_data(
-      type = "est"
-    ) %>% 
-    filter(term == "CohortControl") %>%
-    cbind(
-      label = "DTA"
-    ),
-  M %>% logistf(
-    formula = DDR_CH ~ Cohort + Age + Gender + Race,
-    family = "binomial"
-    ) %>%
-    get_model_data(
-      type = "est"
-    ) %>% 
-    filter(term == "CohortControl") %>%
-    cbind(
-      label = "DDR"
-    )
-  )
-
-fig1d_model <- bind_rows(
   M %>%
     mutate(
       Cohort = relevel(factor(Cohort), ref = "Control")
@@ -252,7 +227,80 @@ fig1d_model <- bind_rows(
     filter(term == "CohortCase")
 )
 
+fig1d_model <- bind_rows(
+  M %>%
+    mutate(
+    Cohort = relevel(
+      factor(Cohort),
+      ref = "Control"
+    )
+  ) %>%
+    logistf(
+      formula = DTA_CH ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>% 
+    filter(term == "CohortCase") %>%
+    cbind(
+      label = "DTA"
+    ),
+  M %>% 
+    mutate(
+    Cohort = relevel(
+      factor(Cohort),
+      ref = "Control"
+    )
+    ) %>%logistf(
+      formula = DDR_CH ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>% 
+    filter(term == "CohortCase") %>%
+    cbind(
+      label = "DDR"
+    )
+  )
+
+genes <- D %>%
+  mutate(
+    Gene = as.factor(Gene)
+  ) %>%
+  pull(Gene) %>%
+  unique()
 suppfig1_model <- bind_rows(
+  map(genes, function(gene) {
+    Samples <- D %>%
+      filter(Gene == gene) %>%
+      pull(SampleID)
+    M %>%
+      mutate(
+        CH_Gene = if_else(
+          SampleID %in% Samples,
+          1,
+          0
+        )
+      ) %>%
+      logistf(
+        formula = CH_Gene ~ Cohort + Age + Gender + Race,
+        family = "binomial"
+      ) %>%
+      get_model_data(
+        type = "est"
+      ) %>%
+      mutate(
+        Gene = gene
+      ) %>%
+      filter(
+        term == "CohortControl"
+      )
+  })
+)
+
+suppfig3_model <- bind_rows(
   M %>%
     mutate(
       Origin = relevel(factor(Origin), ref = "Healthy Control")
@@ -309,7 +357,7 @@ suppfig1_model <- bind_rows(
     filter(term == "OriginSolid Tumor Control")
 )
 
-suppfig2_model <- bind_rows(
+suppfig4_model <- bind_rows(
   D %>%
     filter(Gene_Class == "DDR") %>%
     glm(
@@ -337,41 +385,111 @@ suppfig2_model <- bind_rows(
     ) %>%
     filter(term == "CohortControl")
 )
+```
 
-genes <- D %>%
+``` r
+supp_fig2b_model <- M_sens %>%
   mutate(
-    Gene = as.factor(Gene)
+    Cohort = relevel(
+      factor(Cohort),
+      ref = "Control"
+    )
   ) %>%
-  pull(Gene) %>%
-  unique()
-suppfig3_model <- bind_rows(
-  map(genes, function(gene) {
-    Samples <- D %>%
-      filter(Gene == gene) %>%
-      pull(SampleID)
-    M %>%
-      mutate(
-        CH_Gene = if_else(
-          SampleID %in% Samples,
-          1,
-          0
-        )
-      ) %>%
-      logistf(
-        formula = CH_Gene ~ Cohort + Age + Gender + Race,
-        family = "binomial"
-      ) %>%
-      get_model_data(
-        type = "est"
-      ) %>%
-      mutate(
-        Gene = gene
-      ) %>%
-      filter(
-        term == "CohortControl"
-      )
-  })
+  glm(
+    formula = CH_Binary ~ Cohort + Age + Gender + Race,
+    family = "binomial"
+  ) %>%
+  get_model_data(
+    type = "est"
+  )
+
+supp_fig2c_model <- bind_rows(
+  M_sens %>%
+    mutate(
+      Cohort = relevel(factor(Cohort), ref = "Control")
+    ) %>%
+    logistf(
+      formula = CH_Binary ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>% 
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      VAF = "All VAFs"
+    ) %>%
+    filter(term == "CohortCase"),
+  M_sens %>%
+    mutate(
+      Cohort = relevel(factor(Cohort), ref = "Control")
+    ) %>%
+    filter(VAF_group == ">2%" | VAF_group == "No CH") %>%
+    logistf(
+      formula = CH_Binary ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      VAF = "Greater than 2% VAF"
+    ) %>%
+    filter(term == "CohortCase"),
+  M_sens %>%
+    mutate(
+      Cohort = relevel(factor(Cohort), ref = "Control")
+    ) %>%
+    filter(VAF_group == "<=2%" | VAF_group == "No CH") %>%
+    logistf(
+      formula = CH_Binary ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>%
+    cbind(
+      VAF = "Less than or equal 2% VAF"
+    ) %>%
+    filter(term == "CohortCase")
 )
+
+supp_fig2d_model <- bind_rows(
+  M_sens %>%
+    mutate(
+    Cohort = relevel(
+      factor(Cohort),
+      ref = "Control"
+    )
+  ) %>%
+    logistf(
+      formula = DTA_CH ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>% 
+    filter(term == "CohortCase") %>%
+    cbind(
+      label = "DTA"
+    ),
+  M_sens %>% 
+    mutate(
+    Cohort = relevel(
+      factor(Cohort),
+      ref = "Control"
+    )
+    ) %>%logistf(
+      formula = DDR_CH ~ Cohort + Age + Gender + Race,
+      family = "binomial"
+    ) %>%
+    get_model_data(
+      type = "est"
+    ) %>% 
+    filter(term == "CohortCase") %>%
+    cbind(
+      label = "DDR"
+    )
+  )
 ```
 
 # Table 1
@@ -504,7 +622,7 @@ knitr::kable(fig1b_model)
 | RaceWhite  | 0.9607478 | 0.5117836 |       0.95 | 0.3629540 |  2.768238 | -0.0782427 |      Inf | 0.9376350 |         | 0.96        | neg   |    1 | 0.825 | 1.175 |
 
 ``` r
-fig1c <- D %>%
+fig1d <- D %>%
   filter(Gene != "No Mutation") %>%
   distinct(Gene_Class, SampleID, Gene, Cohort) %>%
   group_by(Gene_Class, Cohort) %>%
@@ -536,7 +654,7 @@ fig1c <- D %>%
     y_position = 0.35,
     xmin = 0.75,
     xmax = 1.25,
-    annotation = paste0("p = ", format(fig1c_model$p.value[1], digits = 1)),
+    annotation = paste0("p = ", format(fig1d_model$p.value[1], digits = 1)),
     tip_length = 0.03,
     size = 0.3
   ) + 
@@ -544,7 +662,7 @@ fig1c <- D %>%
     y_position = 0.32,
     xmin = 1.75,
     xmax = 2.25,
-    annotation = paste0("p = ", format(fig1c_model$p.value[2], digits = 1)),
+    annotation = paste0("p = ", format(fig1d_model$p.value[2], digits = 1)),
     tip_length = 0.03,
     size = 0.3
   ) + 
@@ -566,22 +684,22 @@ fig1c <- D %>%
     ## `.groups` argument.
 
 ``` r
-fig1c
+fig1d
 ```
 
 ![](CHChildhoodSurvivors_files/figure-gfm/Fig1c%20-%20Proportion%20of%20CH%20in%20Cases%20vs%20Groups%20Grouped%20by%20Gene%20Class-1.svg)<!-- -->
 
 ``` r
-knitr::kable(fig1c_model)
+knitr::kable(fig1d_model)
 ```
 
-| term          |  estimate | std.error | conf.level |  conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | label |
-|:--------------|----------:|----------:|-----------:|----------:|----------:|----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:------|
-| CohortControl | 0.4095453 | 0.3708715 |       0.95 | 0.1979774 | 0.8472047 |   5.83271 |        1 | 0.0157309 | \*      | 0.41 \*     | neg   |    7 | 6.825 | 7.175 | DTA   |
-| CohortControl | 0.1402059 | 0.4889828 |       0.95 | 0.0537704 | 0.3655856 |  18.37792 |        1 | 0.0000181 | \*\*\*  | 0.14 \*\*\* | neg   |    7 | 6.825 | 7.175 | DDR   |
+| term       | estimate | std.error | conf.level | conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | label |
+|:-----------|---------:|----------:|-----------:|---------:|----------:|----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:------|
+| CohortCase | 2.441732 | 0.3708715 |       0.95 | 1.180352 |  5.051082 |   5.83271 |        1 | 0.0157309 | \*      | 2.44 \*     | pos   |    7 | 6.825 | 7.175 | DTA   |
+| CohortCase | 7.132369 | 0.4889828 |       0.95 | 2.735337 | 18.597591 |  18.37792 |        1 | 0.0000181 | \*\*\*  | 7.13 \*\*\* | pos   |    7 | 6.825 | 7.175 | DDR   |
 
 ``` r
-fig1d <- fig1d_model %>%
+fig1c <- fig1c_model %>%
   mutate(
     term = factor("Treated Individuals"),
     p_fdr = p.adjust(p.value, method = "fdr")
@@ -634,7 +752,7 @@ fig1d <- fig1d_model %>%
     legend.position = "none"
   ) +
   scale_fill_nejm() + scale_color_nejm()
-fig1d
+fig1c
 ```
 
     ## Don't know how to automatically pick scale for object of type <noquote>.
@@ -643,7 +761,7 @@ fig1d
 ![](CHChildhoodSurvivors_files/figure-gfm/Fig1d%20-%20Odds%20Ratio%20Grouped%20by%20VAF%20Bins-1.svg)<!-- -->
 
 ``` r
-knitr::kable(fig1d_model)
+knitr::kable(fig1c_model)
 ```
 
 | term       |  estimate | std.error | conf.level | conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | VAF                       |
@@ -663,6 +781,293 @@ Fig1
 ![](CHChildhoodSurvivors_files/figure-gfm/Figure1-1.svg)<!-- -->
 
 # Supp Figure 1
+
+``` r
+D %>%
+  distinct(Gene, SampleID, Cohort) %>%
+  group_by(Gene, Cohort) %>%
+  summarise(Samples = sum(n())) %>%
+  left_join(
+    D %>%
+      distinct(Cohort, SampleID) %>%
+      group_by(Cohort) %>%
+      summarise(Total = n()),
+    by = "Cohort"
+  ) %>%
+  mutate(Proportion = Samples/Total) %>%
+  filter(Gene != "No Mutation") %>%
+  ggplot(
+    aes(x = reorder(Gene, -Proportion),
+        y = Proportion,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.17,
+    xmin = 2.8,
+    xmax = 3.2,
+    annotation = paste0("p = ", 
+                        format(suppfig1_model$p.value[1], digits = 1), 
+                        suppfig1_model$p.stars[1]
+                 ),
+    tip_length = 0.03,
+    size = 0.03
+  ) +
+  geom_signif(
+    y_position = 0.15,
+    xmin = 1.8,
+    xmax = 2.2,
+    annotation = paste0("p = ", 
+                        format(suppfig1_model$p.value[2], digits = 1), 
+                        suppfig1_model$p.stars[2]
+                 ),
+    tip_length = 0.03,
+    size = 0.03
+  ) + 
+  geom_signif(
+    y_position = 0.11,
+    xmin = 3.8,
+    xmax = 4.2,
+    annotation = paste0("p = ", 
+                        format(suppfig1_model$p.value[5], digits = 1), 
+                        suppfig1_model$p.stars[5]
+                 ),
+    tip_length = 0.03,
+    size = 0.03,
+  ) +
+  labs(x = "",
+       y = "Proportion of Samples"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```
+
+    ## `summarise()` has grouped output by 'Gene'. You can override using the
+    ## `.groups` argument.
+
+![](CHChildhoodSurvivors_files/figure-gfm/Distrubtion%20by%20Gene%20per%20Sample-1.svg)<!-- -->
+
+``` r
+knitr::kable(suppfig1_model)
+```
+
+| term          |  estimate | std.error | conf.level |  conf.low |  conf.high |  statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | Gene        |
+|:--------------|----------:|----------:|-----------:|----------:|-----------:|-----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:------------|
+| CohortControl | 0.1310966 | 0.5899461 |       0.95 | 0.0412504 |  0.4166339 | 13.0318562 |        1 | 0.0003062 | \*\*\*  | 0.13 \*\*\* | neg   |    7 | 6.825 | 7.175 | TP53        |
+| CohortControl | 0.0292772 | 1.0818105 |       0.95 | 0.0035131 |  0.2439880 | 16.9061846 |        1 | 0.0000393 | \*\*\*  | 0.03 \*\*\* | neg   |    7 | 6.825 | 7.175 | PPM1D       |
+| CohortControl | 0.5576151 | 0.3873981 |       0.95 | 0.2609640 |  1.1914844 |  2.2176258 |        1 | 0.1364427 |         | 0.56        | neg   |    7 | 6.825 | 7.175 | DNMT3A      |
+| CohortControl | 3.3192078 | 0.3418567 |       0.95 | 1.6984214 |  6.4866942 | 12.9408839 |        1 | 0.0003215 | \*\*\*  | 3.32 \*\*\* | pos   |    7 | 6.825 | 7.175 | No Mutation |
+| CohortControl | 0.0796280 | 0.8121109 |       0.95 | 0.0162105 |  0.3911433 | 11.4001713 |        1 | 0.0007344 | \*\*\*  | 0.08 \*\*\* | neg   |    7 | 6.825 | 7.175 | TET2        |
+| CohortControl | 0.1249979 | 1.2337537 |       0.95 | 0.0111360 |  1.4030583 |  1.4369497 |        1 | 0.2306336 |         | 0.12        | neg   |    7 | 6.825 | 7.175 | JAK2        |
+| CohortControl | 0.4426406 | 0.8633977 |       0.95 | 0.0814940 |  2.4042336 |  0.6102383 |        1 | 0.4346981 |         | 0.44        | neg   |    7 | 6.825 | 7.175 | ASXL1       |
+| CohortControl | 2.1873568 | 0.8645115 |       0.95 | 0.4018335 | 11.9067466 |  0.6491393 |        1 | 0.4204206 |         | 2.19        | pos   |    7 | 6.825 | 7.175 | CHEK2       |
+
+# Supp Figure 2
+
+``` r
+supp_fig2a <- M_sens %>%
+  ggplot(
+    aes(x = Age,
+        y = CH_Binary,
+        color = Cohort
+    )
+  ) +
+  geom_smooth(
+    aes(fill = Cohort,
+        color = Cohort
+    ),
+    method = "gam",
+    formula = y ~ s(x),
+    method.args = list(family = "binomial"),
+    size = 1.5,
+    se = TRUE,
+    alpha = 0.1
+  ) +
+  scale_y_continuous(
+    labels = scales::label_percent(accuracy = 1L),
+    expand = expansion(add = c(0.01, 0.01))
+  ) +
+  scale_x_continuous(
+    breaks = seq(0, 50, by = 5)
+  ) + 
+  labs(x = "Age",
+       y = "Frequency (%)"
+  ) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+
+supp_fig2b <- D_sens %>%
+  distinct(Cohort, SampleID) %>%
+  group_by(Cohort) %>%
+  summarise(Total = n()) %>%
+  left_join(
+    D_sens %>%
+      filter(ch_pd_kb == 1) %>%
+      distinct(Cohort, SampleID) %>%
+      group_by(Cohort) %>%
+      summarise(Total_CH = n()),
+    by = "Cohort"
+  ) %>%
+  mutate(Proportion = Total_CH/Total) %>%
+  ggplot(
+    aes(x = Cohort,
+        y = Proportion,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.45,
+    xmin = 1,
+    xmax = 2,
+    annotation = paste0("p = ", format(supp_fig2b_model$p.value[1], digits = 1)),
+    tip_length = 0.03,
+    size = 0.3
+  ) +
+  geom_text(
+    aes(label = Total_CH),
+    vjust = -1
+  ) +
+  labs(x = "Groups",
+       y = "Proportion of CH Positive Samples"
+  ) +
+  ylim(0, 0.5) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+
+supp_fig2d <- D_sens %>%
+  filter(Gene != "No Mutation") %>%
+  distinct(Gene_Class, SampleID, Gene, Cohort) %>%
+  group_by(Gene_Class, Cohort) %>%
+  summarise(Samples = sum(n())) %>%
+  left_join(
+    D_sens %>%
+      distinct(Cohort, SampleID) %>%
+      group_by(Cohort) %>%
+      summarise(Total = n()),
+    by = "Cohort"
+  ) %>%
+  mutate(
+    Proportion = Samples/Total
+  ) %>%
+  filter(
+    Gene_Class != "JAK2"
+  ) %>%
+  ggplot(
+    aes(x = reorder(Gene_Class, -Proportion),
+        y = Proportion,
+        fill = Cohort
+    )
+  ) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(preserve = "single")
+  ) +
+  geom_signif(
+    y_position = 0.35,
+    xmin = 0.75,
+    xmax = 1.25,
+    annotation = paste0("p = ", format(supp_fig2d_model$p.value[1], digits = 1)),
+    tip_length = 0.03,
+    size = 0.3
+  ) + 
+  geom_signif(
+    y_position = 0.32,
+    xmin = 1.75,
+    xmax = 2.25,
+    annotation = paste0("p = ", format(supp_fig2d_model$p.value[2], digits = 1)),
+    tip_length = 0.03,
+    size = 0.3
+  ) + 
+  geom_text(
+    aes(label = Samples,
+        vjust = -1
+    ),
+    position = position_dodge(width = 1)
+  ) +
+  labs(x = "",
+       y = "Proportion of Samples"
+  ) + 
+  ylim(0, 0.4) +
+  panel_theme_basic +
+  scale_fill_nejm() + scale_color_nejm()
+```
+
+    ## `summarise()` has grouped output by 'Gene_Class'. You can override using the
+    ## `.groups` argument.
+
+``` r
+supp_fig2c <- supp_fig2c_model %>%
+  mutate(
+    term = factor("Treated Individuals"),
+    p_fdr = p.adjust(p.value, method = "fdr")
+  ) %>%
+  arrange(estimate, VAF) %>%
+  mutate(
+    q.value = p.adjust(p.value, n = nrow(.), method = 'fdr'),
+    q.label = paste0(signif(estimate, 2), signif.num(q.value)),
+    q.star = signif.num(q.value)
+  ) %>%
+  ggplot(
+    aes(x = VAF,
+        y = estimate,
+        ymin = conf.low,
+        ymax = conf.high,
+        color = VAF
+    )
+  ) +
+  geom_point(
+    position = position_dodge(width = 0.8),
+    size = 2
+  ) +
+  geom_errorbar(
+    position = position_dodge(width = 0.8),
+    width = 0,
+    size = 1
+  ) +
+  geom_text(
+    aes(label = q.star,
+        vjust = -0.7
+    ),
+    position = position_dodge(width = 0.8),
+    size = 4,
+    alpha = 0.9
+  ) +
+  geom_hline(
+    yintercept = 1,
+    color = "black",
+    linetype = "solid", 
+    alpha = 0.1
+  ) + 
+  coord_flip() +
+  labs(x = "",
+       y = "Odds Ratio for CH"
+  ) +
+  scale_y_log10() +
+  panel_theme_basic +
+  theme(
+    legend.text = element_blank(),
+    legend.position = "none"
+  ) +
+  scale_fill_nejm() + scale_color_nejm()
+
+SuppFig2 <- (supp_fig2a + supp_fig2b) / (supp_fig2c + supp_fig2d) + plot_annotation(tag_levels = 'A')
+SuppFig2
+```
+
+    ## Don't know how to automatically pick scale for object of type <noquote>.
+    ## Defaulting to continuous.
+
+![](CHChildhoodSurvivors_files/figure-gfm/Sensitivity%20Analysis-1.svg)<!-- -->
+
+# Supp Figure 3
 
 ``` r
 D %>%
@@ -693,8 +1098,8 @@ D %>%
     xmin = 1,
     xmax = 2, 
     annotation = paste0("p = ", 
-                        format(suppfig1_model$p.value[1], digits = 1),
-                        suppfig1_model$p.stars[1]
+                        format(suppfig3_model$p.value[1], digits = 1),
+                        suppfig3_model$p.stars[1]
                         ),
     tip_length = 0.03,
     size = 0.3
@@ -704,8 +1109,8 @@ D %>%
     xmin = 1,
     xmax = 3, 
     annotation = paste0("p = ", 
-                        format(suppfig1_model$p.value[2], digits = 1),
-                        suppfig1_model$p.stars[2]
+                        format(suppfig3_model$p.value[2], digits = 1),
+                        suppfig3_model$p.stars[2]
                         ),
     tip_length = 0.03,
     size = 0.3
@@ -715,8 +1120,8 @@ D %>%
     xmin = 2,
     xmax = 3, 
     annotation = paste0("p = ", 
-                        format(suppfig1_model$p.value[3], digits = 1),
-                        suppfig1_model$p.stars[3]
+                        format(suppfig3_model$p.value[3], digits = 1),
+                        suppfig3_model$p.stars[3]
                         ),
     tip_length = 0.03,
     size = 0.3
@@ -737,7 +1142,7 @@ D %>%
 ![](CHChildhoodSurvivors_files/figure-gfm/Overall%20Frequency%20of%20CH-1.svg)<!-- -->
 
 ``` r
-knitr::kable(suppfig1_model)
+knitr::kable(suppfig3_model)
 ```
 
 | term                      |  estimate | std.error | conf.level |  conf.low | conf.high | statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | label                                  |
@@ -746,7 +1151,7 @@ knitr::kable(suppfig1_model)
 | OriginCase                | 5.4847727 | 0.4917545 |       0.95 | 2.2094345 | 15.416121 |  3.461027 |      Inf | 0.0005381 | \*\*\*  | 5.48 \*\*\* | pos   |    7 | 6.825 | 7.175 | Case VS Solid Tumor Control            |
 | OriginSolid Tumor Control | 0.5110508 | 0.4879018 |       0.95 | 0.1896173 |  1.307861 | -1.375863 |      Inf | 0.1688639 |         | 0.51        | neg   |    7 | 6.825 | 7.175 | Healthy Control VS Solid Tumor Control |
 
-# Supp Figure 2
+# Supp Figure 4
 
 ``` r
 D %>% 
@@ -781,7 +1186,7 @@ D %>%
 ![](CHChildhoodSurvivors_files/figure-gfm/Violin%20Plots%20of%20the%20VAF%20Distributions-1.svg)<!-- -->
 
 ``` r
-knitr::kable(suppfig2_model)
+knitr::kable(suppfig4_model)
 ```
 
 | term          |   estimate | std.error | conf.level |   conf.low | conf.high |  statistic | df.error |   p.value | p.stars | p.label | group | xpos |  xmin |  xmax | label |
@@ -789,7 +1194,7 @@ knitr::kable(suppfig2_model)
 | CohortControl | -0.0051067 | 0.0083614 |       0.95 | -0.0214947 | 0.0112813 | -0.6107461 |       36 | 0.5413677 |         | -0.01   | neg   |    4 | 3.825 | 4.175 | DDR   |
 | CohortControl | -0.0042208 | 0.0076462 |       0.95 | -0.0192072 | 0.0107655 | -0.5520117 |       70 | 0.5809404 |         | -0.00   | neg   |    7 | 6.825 | 7.175 | DTA   |
 
-# Supp Figure 3A
+# Supp Figure 5
 
 ``` r
 M %>%
@@ -841,100 +1246,14 @@ M %>%
 
 ![](CHChildhoodSurvivors_files/figure-gfm/Number%20of%20Mutations%20Per%20Sample-1.svg)<!-- -->
 
-# Supp Figure 3B
-
-``` r
-D %>%
-  distinct(Gene, SampleID, Cohort) %>%
-  group_by(Gene, Cohort) %>%
-  summarise(Samples = sum(n())) %>%
-  left_join(
-    D %>%
-      distinct(Cohort, SampleID) %>%
-      group_by(Cohort) %>%
-      summarise(Total = n()),
-    by = "Cohort"
-  ) %>%
-  mutate(Proportion = Samples/Total) %>%
-  filter(Gene != "No Mutation") %>%
-  ggplot(
-    aes(x = reorder(Gene, -Proportion),
-        y = Proportion,
-        fill = Cohort
-    )
-  ) +
-  geom_bar(
-    stat = "identity",
-    position = position_dodge(preserve = "single")
-  ) +
-  geom_signif(
-    y_position = 0.17,
-    xmin = 2.8,
-    xmax = 3.2,
-    annotation = paste0("p = ", 
-                        format(suppfig3_model$p.value[1], digits = 1), 
-                        suppfig3_model$p.stars[1]
-                 ),
-    tip_length = 0.03,
-    size = 0.03
-  ) +
-  geom_signif(
-    y_position = 0.15,
-    xmin = 1.8,
-    xmax = 2.2,
-    annotation = paste0("p = ", 
-                        format(suppfig3_model$p.value[2], digits = 1), 
-                        suppfig3_model$p.stars[2]
-                 ),
-    tip_length = 0.03,
-    size = 0.03
-  ) + 
-  geom_signif(
-    y_position = 0.11,
-    xmin = 3.8,
-    xmax = 4.2,
-    annotation = paste0("p = ", 
-                        format(suppfig3_model$p.value[5], digits = 1), 
-                        suppfig3_model$p.stars[5]
-                 ),
-    tip_length = 0.03,
-    size = 0.03,
-  ) +
-  labs(x = "",
-       y = "Proportion of Samples"
-  ) +
-  panel_theme_basic +
-  scale_fill_nejm() + scale_color_nejm()
-```
-
-    ## `summarise()` has grouped output by 'Gene'. You can override using the
-    ## `.groups` argument.
-
-![](CHChildhoodSurvivors_files/figure-gfm/Distrubtion%20by%20Gene%20per%20Sample-1.svg)<!-- -->
-
-``` r
-knitr::kable(suppfig3_model)
-```
-
-| term          |  estimate | std.error | conf.level |  conf.low |  conf.high |  statistic | df.error |   p.value | p.stars | p.label     | group | xpos |  xmin |  xmax | Gene        |
-|:--------------|----------:|----------:|-----------:|----------:|-----------:|-----------:|---------:|----------:|:--------|:------------|:------|-----:|------:|------:|:------------|
-| CohortControl | 0.1310966 | 0.5899461 |       0.95 | 0.0412504 |  0.4166339 | 13.0318562 |        1 | 0.0003062 | \*\*\*  | 0.13 \*\*\* | neg   |    7 | 6.825 | 7.175 | TP53        |
-| CohortControl | 0.0292772 | 1.0818105 |       0.95 | 0.0035131 |  0.2439880 | 16.9061846 |        1 | 0.0000393 | \*\*\*  | 0.03 \*\*\* | neg   |    7 | 6.825 | 7.175 | PPM1D       |
-| CohortControl | 0.5576151 | 0.3873981 |       0.95 | 0.2609640 |  1.1914844 |  2.2176258 |        1 | 0.1364427 |         | 0.56        | neg   |    7 | 6.825 | 7.175 | DNMT3A      |
-| CohortControl | 3.3192078 | 0.3418567 |       0.95 | 1.6984214 |  6.4866942 | 12.9408839 |        1 | 0.0003215 | \*\*\*  | 3.32 \*\*\* | pos   |    7 | 6.825 | 7.175 | No Mutation |
-| CohortControl | 0.0796280 | 0.8121109 |       0.95 | 0.0162105 |  0.3911433 | 11.4001713 |        1 | 0.0007344 | \*\*\*  | 0.08 \*\*\* | neg   |    7 | 6.825 | 7.175 | TET2        |
-| CohortControl | 0.1249979 | 1.2337537 |       0.95 | 0.0111360 |  1.4030583 |  1.4369497 |        1 | 0.2306336 |         | 0.12        | neg   |    7 | 6.825 | 7.175 | JAK2        |
-| CohortControl | 0.4426406 | 0.8633977 |       0.95 | 0.0814940 |  2.4042336 |  0.6102383 |        1 | 0.4346981 |         | 0.44        | neg   |    7 | 6.825 | 7.175 | ASXL1       |
-| CohortControl | 2.1873568 | 0.8645115 |       0.95 | 0.4018335 | 11.9067466 |  0.6491393 |        1 | 0.4204206 |         | 2.19        | pos   |    7 | 6.825 | 7.175 | CHEK2       |
-
-# Supp Figure 4
+# Supp Figure 6
 
 ``` r
 M %>%
   mutate(
-    TxBIN = relevel(factor(TxBIN), ref = "Untreated")
+    TxBIN = relevel(factor(TxBIN), ref = "Controls")
   ) %>%
-  filter(TxBIN == ">5 Years After Treatment" | TxBIN == "Untreated") %>%
+  filter(TxBIN == ">5 Years After Treatment" | TxBIN == "Controls") %>%
   glm(
     data = .,
     CH_Binary ~ TxBIN + Age + Gender + Race,
@@ -973,9 +1292,9 @@ M %>%
 ``` r
 M %>%
   mutate(
-    TxBIN = relevel(factor(TxBIN), ref = "Untreated")
+    TxBIN = relevel(factor(TxBIN), ref = "Controls")
   ) %>%
-  filter(TxBIN == "<=5 Years After Treatment" | TxBIN == "Untreated") %>%
+  filter(TxBIN == "<=5 Years After Treatment" | TxBIN == "Controls") %>%
   glm(
     data = .,
     CH_Binary ~ TxBIN + Age + Gender + Race,

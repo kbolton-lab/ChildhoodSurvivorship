@@ -1,7 +1,7 @@
 CH in Survivors of Childhood Cancer
 ================
 Irenaeus Chan
-Mon May 15, 2023 14:46:01
+Tue May 23, 2023 17:59:22
 
 -   [Table 1](#table-1)
 -   [Figure 1](#figure-1)
@@ -12,6 +12,7 @@ Mon May 15, 2023 14:46:01
 -   [Supp Figure 5](#supp-figure-5)
 -   [Supp Figure 6](#supp-figure-6)
 -   [Supp Figure Donut](#supp-figure-donut)
+-   [Signatures Plot](#signatures-plot)
 
 ``` r
 knitr::opts_chunk$set(dev = "svg")
@@ -1409,3 +1410,106 @@ SuppFigDonut
 ```
 
 ![](CHChildhoodSurvivors_files/figure-gfm/Donut%20Plot%20of%20SNPs-1.svg)<!-- -->
+
+# Signatures Plot
+
+``` r
+source('tools/signatures_plot_function.R')
+```
+
+    ## Loading required package: BSgenome
+
+    ## Loading required package: BiocGenerics
+
+    ## Warning: package 'BiocGenerics' was built under R version 4.0.5
+
+    ## Loading required package: parallel
+
+    ## 
+    ## Attaching package: 'BiocGenerics'
+
+    ## The following objects are masked from 'package:parallel':
+    ## 
+    ##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    ##     clusterExport, clusterMap, parApply, parCapply, parLapply,
+    ##     parLapplyLB, parRapply, parSapply, parSapplyLB
+
+    ## The following objects are masked from 'package:dplyr':
+    ## 
+    ##     combine, intersect, setdiff, union
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     IQR, mad, sd, var, xtabs
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    ##     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    ##     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    ##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    ##     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    ##     union, unique, unsplit, which.max, which.min
+
+    ## Loading required package: S4Vectors
+
+    ## Loading required package: stats4
+
+    ## 
+    ## Attaching package: 'S4Vectors'
+
+    ## The following objects are masked from 'package:dplyr':
+    ## 
+    ##     first, rename
+
+    ## The following object is masked from 'package:base':
+    ## 
+    ##     expand.grid
+
+    ## Loading required package: IRanges
+
+    ## 
+    ## Attaching package: 'IRanges'
+
+    ## The following object is masked from 'package:purrr':
+    ## 
+    ##     reduce
+
+    ## The following objects are masked from 'package:dplyr':
+    ## 
+    ##     collapse, desc, slice
+
+    ## Loading required package: GenomeInfoDb
+
+    ## Warning: package 'GenomeInfoDb' was built under R version 4.0.5
+
+    ## Loading required package: GenomicRanges
+
+    ## Loading required package: Biostrings
+
+    ## Loading required package: XVector
+
+    ## 
+    ## Attaching package: 'XVector'
+
+    ## The following object is masked from 'package:purrr':
+    ## 
+    ##     compact
+
+    ## 
+    ## Attaching package: 'Biostrings'
+
+    ## The following object is masked from 'package:base':
+    ## 
+    ##     strsplit
+
+    ## Loading required package: rtracklayer
+
+``` r
+D %>% 
+  select(CHROM, POS, REF, ALT) %>%
+  filter(nchar(REF) == 1 & nchar(ALT) == 1) %>%
+  signatures_plot
+```
+
+![](CHChildhoodSurvivors_files/figure-gfm/Mutational%20Signatures%20Plot-1.svg)<!-- -->

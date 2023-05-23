@@ -1235,3 +1235,12 @@ d2 <- D_ %>%
 SuppFigDonut <- d1 + d2
 SuppFigDonut
 ```
+
+# Signatures Plot
+```{r Mutational Signatures Plot}
+source('tools/signatures_plot_function.R')
+D %>% 
+  select(CHROM, POS, REF, ALT) %>%
+  filter(nchar(REF) == 1 & nchar(ALT) == 1) %>%
+  signatures_plot
+```
